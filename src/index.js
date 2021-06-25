@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import {createStore, compose, applyMiddleware} from 'redux';
-import {BrowserRouter} from 'react-router-dom';
-import {logger} from 'redux-logger'
+import { createStore, compose, applyMiddleware } from 'redux';
+import { BrowserRouter } from 'react-router-dom';
+import { logger } from 'redux-logger'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
@@ -17,16 +17,16 @@ import shopReducer from './store/reducers/shop';
 // const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 // composeEnhancers prevents using promises in actions, if you find a solution please share
 // const store = createStore(shopReducer, composeEnhancers(applyMiddleware(thunk)));
-const store = createStore(shopReducer, applyMiddleware(thunk,logger));
+const store = createStore(shopReducer, applyMiddleware(thunk, logger));
 
 const app = (
 
     <Provider store={store}>
         <BrowserRouter>
             {/*StripeProvider initializes the stripe and passes in the publishable key*/}
-          
-                    <App/>
-           
+
+            <App />
+
         </BrowserRouter>
     </Provider>
 
@@ -37,4 +37,4 @@ ReactDOM.render(app, document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

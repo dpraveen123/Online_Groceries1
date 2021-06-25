@@ -144,7 +144,7 @@ const reducer = (state = initialState, action) => {
 
         case actionTypes.UPDATE_CART_PRODUCT_COUNT:
             let product = state.cart.find(product => product.id === action.productId);
-            let cartTotal = state.cartTotal;
+            cartTotal = state.cartTotal;
             newCart = state.cart;
             if (product) {
                 cartTotal = state.cartTotal - (product.count - action.newCountValue);
