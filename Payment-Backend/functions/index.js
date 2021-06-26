@@ -10,7 +10,7 @@ var serviceAccount = require("./ofs.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://online-shop-32976.firebaseio.com"
+  databaseURL: "https://online-groceries-d4d42-default-rtdb.firebaseio.com/"
 });
 
 const keys = {
