@@ -1,0 +1,14 @@
+[
+      {
+            "relation": [
+                  "delegate_permission/common.handle_all_urls"
+            ],
+            "target": {
+                  "namespace": "android_app",
+                  "package_name": "app.web.online_groceries_d4d42.twa",
+                  "sha256_cert_fingerprints": [
+                        "8F:71:17:C0:0D:63:E3:54:4F:AB:2E:8E:69:BC:31:6B:F5:75:B1:31:ED:4F:EA:2C:20:FD:B9:D3:06:8B:FC:FB"
+                  ]
+            }
+      }
+]
