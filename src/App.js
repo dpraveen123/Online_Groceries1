@@ -42,6 +42,7 @@ class App extends Component {
     //     })
     //   }   
     componentDidMount(){
+        // console.log(firebase.database().ref())
               this.props.fetchProducts();
         this.props.fetchOrders();
     }

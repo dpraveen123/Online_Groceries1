@@ -47,8 +47,8 @@ const initialState = {
     ordersFetchingError:false,
     // used currency should load with the default currency name and rate
 
-    products: []
-
+    products: [],
+     storeData:[]
   
 };
 
@@ -79,7 +79,10 @@ const reducer = (state = initialState, action) => {
                 cartTotal: cartTotal,
                 cart: newCart2,
             }
-        
+        case 'storing':
+            state.storeData=action.payload
+            console.log("hiieiehehijankjkjsfkhbjbfshk skjsbvkjb",state.storeData)
+
         case actionTypes.FETCH_PRODUCTS_FAILED:
             return {
                 ...state,
