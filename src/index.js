@@ -10,16 +10,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import shopReducer from './store/reducers/shop';
-
-
 // setup redux dev tools to use our app state
 // enable these to use thunk chrome dev tool
 // const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 // composeEnhancers prevents using promises in actions, if you find a solution please share
 // const store = createStore(shopReducer, composeEnhancers(applyMiddleware(thunk)));
 const store = createStore(shopReducer, applyMiddleware(thunk, logger));
-
 const app = (
+    
 
     <Provider store={store}>
         <BrowserRouter>

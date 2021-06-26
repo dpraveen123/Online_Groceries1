@@ -12,7 +12,7 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://online-groceries-d4d42-default-rtdb.firebaseio.com/"
 });
-
+// console.log(admin.firestore(),"i ama admin")
 const keys = {
     razorpay_key: {
         key_id: 'rzp_live_cBbJTiUVjvXaY4',
