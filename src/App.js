@@ -19,7 +19,7 @@ import Sign from './containers/pages/sign.js';
 import Orders from './containers/pages/Orders';
 import firebase from "firebase";
 import admin from './admin/admin.js';
-import Firebase from './FirebasePage'
+
 class App extends Component {
     // false
          state = { isSignedIn: false }
@@ -42,8 +42,7 @@ class App extends Component {
     //     })
     //   }   
     componentDidMount(){
-        console.log(Firebase,"is firebase")
-        this.props.fetchProducts();
+              this.props.fetchProducts();
         this.props.fetchOrders();
     }
     render() {
