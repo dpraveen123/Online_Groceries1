@@ -73,7 +73,7 @@ class Checkout extends Component {
     paymentProcess=(order_id,amount)=> {
         
         var options = {
-            "key": "rzp_test_xQoYrmqy6S6WlL", // Enter the Key ID generated from the Dashboard
+            "key": "rzp_test_uwXJ2KCCr9GhCH", // Enter the Key ID generated from the Dashboard
             "amount": parseInt(amount)*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "Tamatarwala",

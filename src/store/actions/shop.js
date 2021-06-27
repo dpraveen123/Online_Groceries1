@@ -9,71 +9,72 @@ export const addToCart = (productId, productQuantity) => {
     }
 };
 
-export const fetchCart = ()=>{
+export const fetchCart = () => {
     return {
-        type:actionTypes.FETCH_CART
+        type: actionTypes.FETCH_CART
     }
 }
 
-export const requestProducts=()=>{
+export const requestProducts = () => {
     return {
-        type:actionTypes.REQUEST_FETCH_PRODUCTS
+        type: actionTypes.REQUEST_FETCH_PRODUCTS
     }
 }
 
-export const fetchProductsSuccess = (products)=>{
+export const fetchProductsSuccess = (products) => {
     return {
-        type:actionTypes.FETCH_PRODUCTS_SUCCESS,
-        products:products
+        type: actionTypes.FETCH_PRODUCTS_SUCCESS,
+        products: products
     }
 }
 
-export const fetchProductsFailed = (error)=>{
-    return{
-        type:actionTypes.FETCH_PRODUCTS_FAILED,
-        error:error
-    }
-}
-
-export const requestOrders=()=>{
+export const fetchProductsFailed = (error) => {
     return {
-        type:actionTypes.REQUEST_FETCH_ORDERS
+        type: actionTypes.FETCH_PRODUCTS_FAILED,
+        error: error
     }
 }
 
-export const fetchOrdersSuccess=(orders)=>{
-    return{
-        type:actionTypes.FETCH_ORDERS_SUCCESS,
-        orders:orders
+export const requestOrders = () => {
+    return {
+        type: actionTypes.REQUEST_FETCH_ORDERS
     }
 }
 
-export const fetchOrdersFailed=()=>{
-    return{
-        type:actionTypes.FETCH_ORDERS_FAILED
+export const fetchOrdersSuccess = (orders) => {
+    return {
+        type: actionTypes.FETCH_ORDERS_SUCCESS,
+        orders: orders
     }
 }
 
-export function fetchProducts(){
-    return (dispatch)=>{
+export const fetchOrdersFailed = () => {
+    return {
+        type: actionTypes.FETCH_ORDERS_FAILED
+    }
+}
+
+export function fetchProducts() {
+    return (dispatch) => {
         dispatch(requestProducts());
         const db = firebase.firestore();
         return db.collection("products")
             .get()
             .then(querySnapshot => {
-                var x=[]
+                var x = []
                 // this is the data fetched from firebase
                 const data = querySnapshot.docs.map(doc => {
                     const d = doc.data()
-                    x=x.concat(d)
+                    x = x.concat(d)
                     // console.log("data is",doc.data())
-                    return {...d,doc_id:doc.id}});
-                    console.log("fina  is",JSON.stringify(x))
-                    dispatch({type:'storing',payload:x})
+                    return { ...d, doc_id: doc.id }
+                });
+                console.log("fina  is", JSON.stringify(x))
+                dispatch({ type: 'storing', payload: x })
 
                 dispatch(fetchProductsSuccess(data));
                 dispatch(fetchCart());
-            }).catch((err)=>{
+            }).catch((err) => {
                 dispatch(fetchProductsFailed(err));
             })
     }
@@ -101,9 +102,9 @@ export const updateCartProductCount = (value, productId) => {
     }
 };
 
-export const placeOrder = ()=>{
-    return{
-        type:actionTypes.ORDER_PLACING
+export const placeOrder = () => {
+    return {
+        type: actionTypes.ORDER_PLACING
     }
 }
 
@@ -116,7 +117,7 @@ export const placeOrder = ()=>{
 //             quantity:dec
 //         })
 //     }
-    
+
 
 // }
 
@@ -126,23 +127,23 @@ export const confirmOrder = (order, func, ownProps) => {
         // dispatch(placeOrder());
 
 
-        const unsubs = firebase.auth().onAuthStateChanged(user=>{
-            if(user){
-                let url = 'https://us-central1-online-shop-32976.cloudfunctions.net/payment/create_order'  //paste the url here
+        const unsubs = firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                let url = 'https://us-central1-online-groceries-d4d42.cloudfunctions.net/payment/create_order'  //paste the url here
                 let url1 = 'http://localhost:4000/create_order'
-                axios.post(url,{user_id:user.uid,amount:order['price'],order:{...order,date:new Date().toLocaleString()}}).then(r=>{
-                    if(r.data.code==200){
+                axios.post(url, { user_id: user.uid, amount: order['price'], order: { ...order, date: new Date().toLocaleString() } }).then(r => {
+                    if (r.data.code == 200) {
                         let order_id = r.data.order_id
-                        func(order_id,order['price'])
-                    }else{
+                        func(order_id, order['price'])
+                    } else {
 
                         alert("Error placing the order")
                     }
                 })
 
-            }else{
+            } else {
                 dispatch(confirmOrderFailure())
-                ownProps.history.push('/cart');                
+                ownProps.history.push('/cart');
             }
         })
 
@@ -150,29 +151,29 @@ export const confirmOrder = (order, func, ownProps) => {
         // ownProps.history.push('/cart');
 
         // setTimeout(() => {
-            
+
         //     dispatch(resetOrderSuccess())
         // }, 5000)
     }
 };
 
-export function fetchOrders(){
-    return dispatch=>{
+export function fetchOrders() {
+    return dispatch => {
         dispatch(requestOrders());
         const db = firebase.firestore();
 
-        return firebase.auth().onAuthStateChanged(user=> {
-            
-            if(user){
-                return db.collection('users').doc(user.uid).collection('orders').get().then(res=>{
-                    const data = res.docs.map(doc=>{const d = doc.data(); return{...d,doc_id:doc.id}});
+        return firebase.auth().onAuthStateChanged(user => {
+
+            if (user) {
+                return db.collection('users').doc(user.uid).collection('orders').get().then(res => {
+                    const data = res.docs.map(doc => { const d = doc.data(); return { ...d, doc_id: doc.id } });
                     dispatch(fetchOrdersSuccess(data))
-                }).catch(e=>{
+                }).catch(e => {
                     dispatch(fetchOrdersFailed())
                 })
             }
 
-        }) 
+        })
 
     }
 }

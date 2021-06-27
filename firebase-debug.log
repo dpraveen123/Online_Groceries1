@@ -67,3 +67,272 @@ Before we get started, keep in mind:
 [info] +  Wrote functions/.eslintrc.js 
 [info] +  Wrote functions/index.js 
 [info] +  Wrote functions/.gitignore 
+[debug] [2021-06-27T10:38:26.301Z] ----------------------------------------------------------------------
+[debug] [2021-06-27T10:38:26.306Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2021-06-27T10:38:26.307Z] CLI Version:   9.14.0
+[debug] [2021-06-27T10:38:26.307Z] Platform:      win32
+[debug] [2021-06-27T10:38:26.307Z] Node Version:  v12.16.2
+[debug] [2021-06-27T10:38:26.310Z] Time:          Sun Jun 27 2021 16:08:26 GMT+0530 (India Standard Time)
+[debug] [2021-06-27T10:38:26.310Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-27T10:38:26.332Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-27T10:38:26.333Z] > authorizing via signed-in user (dpraveen453@gmail.com)
+[debug] [2021-06-27T10:38:26.333Z] [iam] checking project online-groceries-d4d42 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-06-27T10:38:26.338Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-06-27T10:38:26.339Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-27T10:38:26.861Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sun, 27 Jun 2021 10:38:27 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:38:26.906Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/online-groceries-d4d42:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2021-06-27T10:38:28.583Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:38:28 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1315","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:38:28.587Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/online-groceries-d4d42/serviceAccounts/online-groceries-d4d42@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-06-27T10:38:30.292Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:38:30 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'online-groceries-d4d42'...
+[info] 
+[info] i  deploying functions 
+[debug] [2021-06-27T10:38:30.317Z] Validating nodejs source
+[debug] [2021-06-27T10:38:31.951Z] checkFunctionsSDKVersion encountered error: Invalid Version:  {}
+[debug] [2021-06-27T10:38:31.952Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "14"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^9.8.0",
+    "firebase-functions": "^3.14.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2021-06-27T10:38:31.952Z] Building nodejs source
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2021-06-27T10:38:31.955Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2021-06-27T10:38:31.956Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2021-06-27T10:38:31.957Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/cloudbuild.googleapis.com  
+ 
+[debug] [2021-06-27T10:38:34.117Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:38:34 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:38:34.156Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:38:34 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2021-06-27T10:38:34.191Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:38:34 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2021-06-27T10:38:34.194Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/online-groceries-d4d42/adminSdkConfig  
+ 
+[debug] [2021-06-27T10:38:35.018Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:38:35 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:38:35.021Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/online-groceries-d4d42/configs  
+ 
+[debug] [2021-06-27T10:38:36.152Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:38:36 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:38:36.153Z] Analyzing nodejs backend spec
+[debug] [2021-06-27T10:38:36.356Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/online-groceries-d4d42/locations/-/functions  
+ 
+[debug] [2021-06-27T10:38:37.287Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:38:37 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:38:37.647Z] TypeError: Cannot read property 'length' of undefined
+    at Object.functionMatchesAnyGroup (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\functionsDeployHelper.js:11:23)
+    at C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\deploymentPlanner.js:25:56
+    at Array.filter (<anonymous>)
+    at calculateRegionalFunctionChanges (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\deploymentPlanner.js:25:17)
+    at Object.createDeploymentPlan (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\deploymentPlanner.js:53:50)
+    at release (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release.js:24:48)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2021-06-27T10:47:38.537Z] ----------------------------------------------------------------------
+[debug] [2021-06-27T10:47:38.540Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2021-06-27T10:47:38.541Z] CLI Version:   9.14.0
+[debug] [2021-06-27T10:47:38.541Z] Platform:      win32
+[debug] [2021-06-27T10:47:38.541Z] Node Version:  v12.16.2
+[debug] [2021-06-27T10:47:38.542Z] Time:          Sun Jun 27 2021 16:17:38 GMT+0530 (India Standard Time)
+[debug] [2021-06-27T10:47:38.542Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-27T10:47:38.570Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-27T10:47:38.571Z] > authorizing via signed-in user (dpraveen453@gmail.com)
+[debug] [2021-06-27T10:47:38.571Z] [iam] checking project online-groceries-d4d42 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-06-27T10:47:38.575Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/online-groceries-d4d42:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2021-06-27T10:47:39.204Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:47:39 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=245","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:47:39.207Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/online-groceries-d4d42/serviceAccounts/online-groceries-d4d42@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-06-27T10:47:40.936Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:47:41 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'online-groceries-d4d42'...
+[info] 
+[info] i  deploying functions 
+[debug] [2021-06-27T10:47:40.948Z] Validating nodejs source
+[debug] [2021-06-27T10:47:42.712Z] checkFunctionsSDKVersion encountered error: Invalid Version:  {}
+[debug] [2021-06-27T10:47:42.714Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "14"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^9.8.0",
+    "firebase-functions": "^3.14.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2021-06-27T10:47:42.715Z] Building nodejs source
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2021-06-27T10:47:42.720Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2021-06-27T10:47:42.721Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2021-06-27T10:47:42.722Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/cloudbuild.googleapis.com  
+ 
+[debug] [2021-06-27T10:47:44.640Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:47:44 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:47:44.702Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:47:44 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2021-06-27T10:47:44.705Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:47:44 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2021-06-27T10:47:44.707Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/online-groceries-d4d42/adminSdkConfig  
+ 
+[debug] [2021-06-27T10:47:45.544Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:47:45 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:47:45.545Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/online-groceries-d4d42/configs  
+ 
+[debug] [2021-06-27T10:47:47.386Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:47:47 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:47:47.387Z] Analyzing nodejs backend spec
+[debug] [2021-06-27T10:47:47.558Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/online-groceries-d4d42/locations/-/functions  
+ 
+[debug] [2021-06-27T10:47:48.513Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:47:48 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:47:48.852Z] TypeError: Cannot read property 'length' of undefined
+    at Object.functionMatchesAnyGroup (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\functionsDeployHelper.js:11:23)
+    at C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\deploymentPlanner.js:25:56
+    at Array.filter (<anonymous>)
+    at calculateRegionalFunctionChanges (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\deploymentPlanner.js:25:17)
+    at Object.createDeploymentPlan (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\deploymentPlanner.js:53:50)
+    at release (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release.js:24:48)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2021-06-27T10:48:04.463Z] ----------------------------------------------------------------------
+[debug] [2021-06-27T10:48:04.466Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2021-06-27T10:48:04.467Z] CLI Version:   9.14.0
+[debug] [2021-06-27T10:48:04.467Z] Platform:      win32
+[debug] [2021-06-27T10:48:04.467Z] Node Version:  v12.16.2
+[debug] [2021-06-27T10:48:04.468Z] Time:          Sun Jun 27 2021 16:18:04 GMT+0530 (India Standard Time)
+[debug] [2021-06-27T10:48:04.469Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-27T10:48:04.484Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-27T10:48:04.484Z] > authorizing via signed-in user (dpraveen453@gmail.com)
+[debug] [2021-06-27T10:48:04.484Z] [iam] checking project online-groceries-d4d42 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-06-27T10:48:04.486Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/online-groceries-d4d42:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2021-06-27T10:48:06.040Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:48:06 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1317","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:48:06.045Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/online-groceries-d4d42/serviceAccounts/online-groceries-d4d42@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-06-27T10:48:07.664Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:48:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'online-groceries-d4d42'...
+[info] 
+[info] i  deploying functions 
+[debug] [2021-06-27T10:48:07.683Z] Validating nodejs source
+[debug] [2021-06-27T10:48:08.627Z] checkFunctionsSDKVersion encountered error: Invalid Version:  {}
+[debug] [2021-06-27T10:48:08.628Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "14"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^9.8.0",
+    "firebase-functions": "^3.14.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2021-06-27T10:48:08.628Z] Building nodejs source
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2021-06-27T10:48:08.630Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2021-06-27T10:48:08.630Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2021-06-27T10:48:08.631Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/cloudbuild.googleapis.com  
+ 
+[debug] [2021-06-27T10:48:10.461Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:48:10 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:48:10.503Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:48:10 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2021-06-27T10:48:10.537Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:48:10 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2021-06-27T10:48:10.540Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/online-groceries-d4d42/adminSdkConfig  
+ 
+[debug] [2021-06-27T10:48:11.350Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:48:11 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:48:11.352Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/online-groceries-d4d42/configs  
+ 
+[debug] [2021-06-27T10:48:11.964Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:48:12 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:48:11.966Z] Analyzing nodejs backend spec
+[debug] [2021-06-27T10:48:12.120Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/online-groceries-d4d42/locations/-/functions  
+ 
+[debug] [2021-06-27T10:48:12.915Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:48:13 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:48:13.290Z] TypeError: Cannot read property 'length' of undefined
+    at Object.functionMatchesAnyGroup (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\functionsDeployHelper.js:11:23)
+    at C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\deploymentPlanner.js:25:56
+    at Array.filter (<anonymous>)
+    at calculateRegionalFunctionChanges (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\deploymentPlanner.js:25:17)
+    at Object.createDeploymentPlan (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\deploymentPlanner.js:53:50)
+    at release (C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\release.js:24:48)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2021-06-27T10:48:33.589Z] ----------------------------------------------------------------------
+[debug] [2021-06-27T10:48:33.593Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2021-06-27T10:48:33.593Z] CLI Version:   9.14.0
+[debug] [2021-06-27T10:48:33.593Z] Platform:      win32
+[debug] [2021-06-27T10:48:33.593Z] Node Version:  v12.16.2
+[debug] [2021-06-27T10:48:33.595Z] Time:          Sun Jun 27 2021 16:18:33 GMT+0530 (India Standard Time)
+[debug] [2021-06-27T10:48:33.595Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-27T10:48:33.611Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-27T10:48:33.611Z] > authorizing via signed-in user (dpraveen453@gmail.com)
+[debug] [2021-06-27T10:48:33.612Z] [iam] checking project online-groceries-d4d42 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-06-27T10:48:33.615Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/online-groceries-d4d42:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2021-06-27T10:48:35.217Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 10:48:35 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1326","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T10:48:35.220Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/online-groceries-d4d42/serviceAccounts/online-groceries-d4d42@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}

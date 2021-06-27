@@ -7,6 +7,7 @@ const bp = require('body-parser')
 const cors = require('cors')
 const rzp = require('razorpay')
 var admin = require("firebase-admin");
+
 // var database = firebase.database();
 
 var serviceAccount = require("./ofs.json");
@@ -31,7 +32,9 @@ const instance = new rzp(keys.razorpay_test_key)
 const app = express()
 app.use(cors())
 app.use(bp.json())
+
 app.post('/create_order', async (req, res) => {
+    console.log("this is from backend bro");
     let amount = req.body.amount;
     let order_obj = req.body.order
     if (amount && parseInt(amount) != NaN) {
@@ -42,7 +45,7 @@ app.post('/create_order', async (req, res) => {
             receipt: "USER ID: " + req.body.user_id
         }
         let order_id = null
-        console.log(amount, order_obj, ops)
+        console.log("amount is", amount, order_obj, ops)
         await instance.orders.create(ops, async (err, order) => {
             console.log(err, order)
             if (err) {
@@ -55,7 +58,7 @@ app.post('/create_order', async (req, res) => {
             res.json({ code: 400, msg: 'error' })
             return
         }
-
+        console.log("upto firebase brooooooooo");
 
         await admin.firestore().collection('users').doc(req.body.user_id).collection('orders').doc(order_id).set({
             cart: order_obj['cart'],
@@ -63,6 +66,12 @@ app.post('/create_order', async (req, res) => {
             date: order_obj['date'],
             user_details: order_obj['user']
         })
+            .then(() => {
+                console.log("Document successfully written! by backend broooo");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
         await admin.firestore().collection('razorpay_orders').doc(order_id).set({
             user_id: req.body.user_id,
             price: order_obj['price'],
