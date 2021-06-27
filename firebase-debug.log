@@ -1,0 +1,69 @@
+[debug] [2021-06-27T06:54:20.352Z] ----------------------------------------------------------------------
+[debug] [2021-06-27T06:54:20.356Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\dprav\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-06-27T06:54:20.356Z] CLI Version:   9.14.0
+[debug] [2021-06-27T06:54:20.357Z] Platform:      win32
+[debug] [2021-06-27T06:54:20.357Z] Node Version:  v12.16.2
+[debug] [2021-06-27T06:54:20.358Z] Time:          Sun Jun 27 2021 12:24:20 GMT+0530 (India Standard Time)
+[debug] [2021-06-27T06:54:20.358Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-27T06:54:20.362Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-06-27T06:54:20.402Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-27T06:54:20.402Z] > authorizing via signed-in user (dpraveen453@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\dprav\OneDrive\Desktop\Online_Groceries-6\Online_Groceries1
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[debug] [2021-06-27T06:54:21.318Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-06-27T06:54:21.319Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using online-groceries-d4d42. 
+[debug] [2021-06-27T06:54:33.271Z] > refreshing access token with scopes: []
+[debug] [2021-06-27T06:54:33.271Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-27T06:54:33.523Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sun, 27 Jun 2021 06:54:32 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T06:54:33.548Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/online-groceries-d4d42 [none]
+[debug] [2021-06-27T06:54:34.091Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/online-groceries-d4d42 200
+[debug] [2021-06-27T06:54:34.091Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/online-groceries-d4d42 {"projectId":"online-groceries-d4d42","projectNumber":"437310215297","displayName":"Online-Groceries","name":"projects/online-groceries-d4d42","resources":{"hostingSite":"online-groceries-d4d42","realtimeDatabaseInstance":"online-groceries-d4d42-default-rtdb","storageBucket":"online-groceries-d4d42.appspot.com","locationId":"asia-southeast2"},"state":"ACTIVE"}
+[info] 
+=== Functions Setup
+[info] 
+[info] A functions directory will be created in your project with a Node.js
+[info] package pre-configured. Functions can be deployed with firebase deploy.
+[info] 
+[debug] [2021-06-27T06:54:34.096Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-27T06:54:34.097Z] > authorizing via signed-in user (dpraveen453@gmail.com)
+[debug] [2021-06-27T06:54:34.097Z] [iam] checking project online-groceries-d4d42 for permissions ["firebase.projects.get"]
+[debug] [2021-06-27T06:54:34.098Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-06-27T06:54:34.099Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-27T06:54:34.365Z] <<< HTTP RESPONSE 200 {"date":"Sun, 27 Jun 2021 06:54:33 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T06:54:34.384Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/online-groceries-d4d42:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2021-06-27T06:54:35.940Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 06:54:35 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1323","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T06:54:35.942Z] >>> HTTP REQUEST POST https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/cloudfunctions.googleapis.com:enable  
+ 
+[debug] [2021-06-27T06:54:35.942Z] >>> HTTP REQUEST POST https://serviceusage.googleapis.com/v1/projects/online-groceries-d4d42/services/runtimeconfig.googleapis.com:enable  
+ 
+[debug] [2021-06-27T06:54:37.831Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 06:54:36 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T06:54:38.061Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 06:54:37 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  Wrote functions/package.json 
+[info] +  Wrote functions/.eslintrc.js 
+[info] +  Wrote functions/index.js 
+[info] +  Wrote functions/.gitignore 

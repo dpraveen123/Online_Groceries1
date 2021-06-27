@@ -19,6 +19,7 @@ import Sign from './containers/pages/sign.js';
 import Orders from './containers/pages/Orders';
 import firebase from "firebase";
 import admin from './admin/admin.js';
+
 class App extends Component {
     // false
          state = { isSignedIn: false }
@@ -41,7 +42,8 @@ class App extends Component {
     //     })
     //   }   
     componentDidMount(){
-        this.props.fetchProducts();
+        // console.log(firebase.database().ref())
+              this.props.fetchProducts();
         this.props.fetchOrders();
     }
     render() {
@@ -79,9 +81,6 @@ class App extends Component {
                 <Switch>
                     <Route exact path={'/admin'} component={ admin }/>
                     </Switch>
-
-
-
             </div>
         );
     }

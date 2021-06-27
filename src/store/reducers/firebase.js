@@ -1,13 +1,13 @@
 import firebase from 'firebase';
 firebase.initializeApp({
-    apiKey: "AIzaSyBEPhxyEU0oTqLR6mjiy4AJOSpmcM_DrcE",
-    authDomain: "online-shop-32976.firebaseapp.com",
-    databaseURL: "https://online-shop-32976.firebaseio.com",
-    projectId: "online-shop-32976",
-    storageBucket: "online-shop-32976.appspot.com",
-    messagingSenderId: "728767128743",
-    appId: "1:728767128743:web:b2621107de1f9dc2c56782",
-    measurementId: "G-S9R8X2962W"
+    apiKey: "AIzaSyCpzHlN_sgzycN6cIRUskyDOEkcOwGtGLQ",
+    authDomain: "online-groceries-d4d42.firebaseapp.com",
+    databaseURL: "https://online-groceries-d4d42-default-rtdb.firebaseio.com",
+    projectId: "online-groceries-d4d42",
+    storageBucket: "online-groceries-d4d42.appspot.com",
+    messagingSenderId: "437310215297",
+    appId: "1:437310215297:web:159a04cdfc092415106980",
+    measurementId: "G-JM3NCW0B4C"
 
 })
 export default firebase;

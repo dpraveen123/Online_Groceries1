@@ -61,10 +61,16 @@ export function fetchProducts(){
         return db.collection("products")
             .get()
             .then(querySnapshot => {
+                var x=[]
                 // this is the data fetched from firebase
                 const data = querySnapshot.docs.map(doc => {
                     const d = doc.data()
+                    x=x.concat(d)
+                    // console.log("data is",doc.data())
                     return {...d,doc_id:doc.id}});
+                    console.log("fina  is",JSON.stringify(x))
+                    dispatch({type:'storing',payload:x})
+
                 dispatch(fetchProductsSuccess(data));
                 dispatch(fetchCart());
             }).catch((err)=>{

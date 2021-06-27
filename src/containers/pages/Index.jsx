@@ -16,7 +16,7 @@ class Index extends Component {
 
     
     render() {
-
+// console.log("hehehhehe",this.props)
         let products = <EmptyCategoryPageContent />
 
         if (this.props.productsProps) {

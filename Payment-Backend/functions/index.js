@@ -1,3 +1,5 @@
+// import firebase from '../../src/store/reducers/firebase'
+// const firebase = require('firebase');
 const functions = require('firebase-functions');
 const express = require('express')
 const crypto = require('crypto')
@@ -5,7 +7,7 @@ const bp = require('body-parser')
 const cors = require('cors')
 const rzp = require('razorpay')
 var admin = require("firebase-admin");
-var database = firebase.database();
+// var database = firebase.database();
 
 var serviceAccount = require("./ofs.json");
 
@@ -13,15 +15,15 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://online-groceries-d4d42-default-rtdb.firebaseio.com/"
 });
-
+// console.log(admin.firestore(),"i ama admin")
 const keys = {
     razorpay_key: {
         key_id: 'rzp_live_cBbJTiUVjvXaY4',
         key_secret: 'asA84HWEFfV8vqwzN424h6dS'
     },
     razorpay_test_key: {
-        key_id: 'rzp_test_xQoYrmqy6S6WlL',
-        key_secret: 'qZfN0HAboAMrJhENMPxN58WM'
+        key_id: 'rzp_test_uwXJ2KCCr9GhCH',
+        key_secret: 'q35Q4qpU8HbwFXITbp5yA1Vg'
     }
 }
 
