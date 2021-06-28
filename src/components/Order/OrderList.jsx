@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const orderList = (props) => {
-    
+    console.log("props from orderlist",props)
     // let currencyKeys = Object.keys(props.currency);
     // let currencyName = props.currency[currencyKeys[1]];
     return (
@@ -10,7 +10,6 @@ const orderList = (props) => {
             <div className="row" style={{cursor:'pointer'}} onClick={()=>{console.log("clickeed");props.hist.push(`/orders/${props.orderId}`)}}>
                 <div className="col">
                     <div className="row">
-                        
                         <div className="col-sm-5 col-md-4 shop-cart-product-details">
                             <h5 className="shop-cart-name text-capitalize">Order ID:{props.orderId}</h5>
                             {props.paymentId && <h5 className="shop-cart-name text-capitalize">Payment ID:{props.paymentId}</h5>}
@@ -20,7 +19,7 @@ const orderList = (props) => {
                                 <div className="col-sm-6 text-left">
                                     <h6 className={'shop-cart-item-price'}>
                                        Rs.
-                                         {props.orderPrice.toLocaleString()}
+                                         {props.orderPrice.toLocaleString()}    
                                     </h6>
                                     <h6 className={'shop-cart-item-price'}>
                                         {props.date}
