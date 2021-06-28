@@ -123,7 +123,7 @@ export const placeOrder = () => {
 
 export const confirmOrder = (order, func, ownProps) => {
     return dispatch => {
-
+        // func(order_id, order['price'])
         // dispatch(placeOrder());
 
 
@@ -136,7 +136,6 @@ export const confirmOrder = (order, func, ownProps) => {
                         let order_id = r.data.order_id
                         func(order_id, order['price'])
                     } else {
-
                         alert("Error placing the order")
                     }
                 })
@@ -167,6 +166,7 @@ export function fetchOrders() {
             if (user) {
                 return db.collection('users').doc(user.uid).collection('orders').get().then(res => {
                     const data = res.docs.map(doc => { const d = doc.data(); return { ...d, doc_id: doc.id } });
+                    console.log("data of rders list is",data)
                     dispatch(fetchOrdersSuccess(data))
                 }).catch(e => {
                     dispatch(fetchOrdersFailed())

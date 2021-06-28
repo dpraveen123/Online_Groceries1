@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import firebase from './firebase'
 import {reactLocalStorage} from 'reactjs-localstorage';
 
-
+import { createStore } from 'redux'
 
 const initialState = {
     cart: [],
@@ -255,5 +255,6 @@ const reducer = (state = initialState, action) => {
     }
 
 };
-
+// console.log("reducer is",reducer.state)
+// const store = createStore(reducer)
 export default reducer;

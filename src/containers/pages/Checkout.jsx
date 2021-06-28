@@ -13,7 +13,7 @@ import PaymentOptions from '../../components/Checkout/Forms/Payments/PaymentOpti
 import Alert from '../../components/UI/Alert/Alert';
 import PropTypes from 'prop-types';
 import formValidator from '../../Utility/formValidation';
-
+// import firebase from '../'
 import { Loading } from './Loading';
 // import $ from'jquery';
 // import {CardElement, injectStripe} from 'react-stripe-elements';
@@ -73,7 +73,7 @@ class Checkout extends Component {
     paymentProcess=(order_id,amount)=> {
         
         var options = {
-            "key": "rzp_test_uwXJ2KCCr9GhCH", // Enter the Key ID generated from the Dashboard
+            "key": "rzp_live_2zssrH6JJBTdMe", // Enter the Key ID generated from the Dashboard
             "amount": parseInt(amount)*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "Tamatarwala",
@@ -82,11 +82,24 @@ class Checkout extends Component {
             "image": "https://example.com/your_logo",
             "order_id": order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": (response)=>{
+                console.log("payment and sucsesful and",response)
+                let url = 'https://us-central1-online-groceries-d4d42.cloudfunctions.net/payment/capture_transaction'  //paste the url here
+                let url1 = 'http://localhost:4000/create_order'
+                axios.post(url, response).then(r => {
+                    if (r.data.code == 200) {
+                        let order_id = r.data.order_id
+                        alert("changing stock")
+                        // func(order_id, order['price'])
+                    } else {
+                        alert("Error placing the order")
+                    }
+                })
                 // this.setState({loading:true})
                 console.log('payment completed')
                 this.setState({loading:false})
                 this.props.confirmOrderSuccProp();
                 this.props.fetchProdProp()
+
                 // axios.post('',response).then(r=>{
                     
                 //     console.log(r)
@@ -178,6 +191,7 @@ class Checkout extends Component {
         // create stripe token for payments
         
         this.props.confirmOrderProp(order,this.paymentProcess.bind(this))
+
 
     };
 

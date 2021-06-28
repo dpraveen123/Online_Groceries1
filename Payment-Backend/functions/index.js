@@ -19,11 +19,11 @@ admin.initializeApp({
 // console.log(admin.firestore(),"i ama admin")
 const keys = {
     razorpay_key: {
-        key_id: 'rzp_live_cBbJTiUVjvXaY4',
-        key_secret: 'asA84HWEFfV8vqwzN424h6dS'
+        key_id: 'rzp_live_2zssrH6JJBTdMe',
+        key_secret: 'JLVS5OtWEoS0FdUfzG7jJcRc'
     },
     razorpay_test_key: {
-        key_id: 'rzp_test_uwXJ2KCCr9GhCH',
+        key_id: 'rzp_test_uwXJ2KCCr9GhCH',  
         key_secret: 'q35Q4qpU8HbwFXITbp5yA1Vg'
     }
 }
