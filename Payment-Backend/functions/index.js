@@ -23,12 +23,12 @@ const keys = {
         key_secret: 'JLVS5OtWEoS0FdUfzG7jJcRc'
     },
     razorpay_test_key: {
-        key_id: 'rzp_test_uwXJ2KCCr9GhCH',  
+        key_id: 'rzp_test_uwXJ2KCCr9GhCH',
         key_secret: 'q35Q4qpU8HbwFXITbp5yA1Vg'
     }
 }
 
-const instance = new rzp(keys.razorpay_test_key)
+const instance = new rzp(keys.razorpay_key)
 const app = express()
 app.use(cors())
 app.use(bp.json())
@@ -109,7 +109,7 @@ app.post('/capture_transaction', async (req, res) => {
     let transaction_data = await get_order(order_id)
 
     if (transaction_data) {
-        if (signature == crypto.createHmac('SHA256', keys.razorpay_test_key.key_secret).update(order_id + '|' + payment_id).digest('hex')) {
+        if (signature == crypto.createHmac('SHA256', keys.razorpay_key.key_secret).update(order_id + '|' + payment_id).digest('hex')) {
             instance.payments.capture(payment_id, parseInt(transaction_data.price) * 100, async function (err, payment) {
                 if (err) {
                     res.json({ code: 400, msg: 'capture failed' })
