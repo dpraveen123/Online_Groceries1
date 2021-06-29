@@ -14,14 +14,18 @@ class signInpage extends Component {
       firebase.auth.PhoneAuthProvider.PROVIDER_ID
     ],
     callbacks: {
-      signInSuccess: () => false
+      signInSuccess: () => {
+        false
+        alert("user logged in")
+      }
     }
   }
 
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(user => {
       this.setState({ isSignedIn: !!user })
-      console.log("user", user)
+      console.log(" hehe jsu user is logged in user", user)
+      alert("user is",user)
     })
   }   
     render() {

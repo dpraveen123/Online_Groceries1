@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import MainWrapper from '../components/UI/Wrappers/MainPageWrapper';
 import SideMenuWrapper from '../components/UI/Wrappers/SideMenuWrapper';
 import ContentWrapper from '../components/UI/Wrappers/PageContentWrapper';
-import MainMenu from '../components/Menus/MainMenu';
-import SideMenu from '../components/Menus/SideMenu';
+import AdminMainMenu from '../components/Menus/AdminMainMenu';
+import AdminSideMenu from '../components/Menus/AdminSideMenu';
 import Footer from '../components/Footer';
 import Modal from '../components/UI/Modal/Modal';
 import PropTypes from 'prop-types';
 
-class MainLayout extends Component {
+class AdminMainLayout extends Component {
     render() {
         return (
             <React.Fragment>
@@ -16,13 +16,13 @@ class MainLayout extends Component {
                     <SideMenuWrapper
                         showSideBar={this.props.showSideBar}
                         toggleSideMenu={this.props.toggleSideBar}>
-                        <SideMenu cartItemNumber={this.props.storeCartCount}
+                        <AdminSideMenu cartItemNumber={this.props.storeCartCount}
                                   showBackDrop={this.props.showSideBar}/>
                     </SideMenuWrapper>
                     <ContentWrapper>
                         <header>
                             
-                            <MainMenu
+                            <AdminMainMenu
                                 cartItemNumber={this.props.storeCartCount}
                                 toggleSideBar={this.props.toggleSideBar}/>
                         </header>
@@ -47,7 +47,7 @@ class MainLayout extends Component {
     }
 }
 
-MainLayout.propTpes = {
+AdminMainLayout.propTpes = {
     storeCartCount: PropTypes.number.isRequired,
     showModal: PropTypes.bool,
     closeModalClick: PropTypes.func,
@@ -56,4 +56,4 @@ MainLayout.propTpes = {
     toggleSideBar: PropTypes.func.isRequired
 };
 
-export default MainLayout;
+export default AdminMainLayout;
