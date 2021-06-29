@@ -164,7 +164,7 @@ export function fetchOrders() {
         return firebase.auth().onAuthStateChanged(user => {
 
             if (user) {
-                return db.collection('users').doc(user.uid).collection('orders').get().then(res => {
+                return db.collection('users').doc(user.uid).collection('orders').where("isPaid", "==", 1).get().then(res => {
                     const data = res.docs.map(doc => { const d = doc.data(); return { ...d, doc_id: doc.id } });
                     console.log("data of rders list is",data)
                     dispatch(fetchOrdersSuccess(data))
@@ -177,6 +177,7 @@ export function fetchOrders() {
 
     }
 }
+  
 
 export const closeMaxProductModal = () => {
     return {

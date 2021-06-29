@@ -66,6 +66,7 @@ app.post('/create_order', async (req, res) => {
             date: order_obj['date'],
             user_details: order_obj['user'],
             isPaid:0,
+            isDelivered:0,
         })
             .then(() => {
                 console.log("Document successfully written! by backend broooo");
@@ -80,6 +81,7 @@ app.post('/create_order', async (req, res) => {
             cart: order_obj['cart'],
             user: order_obj['user'],
             isPaid:0,
+            isDelivered:0,
         })
         res.json({ order_id: order_id, code: 200 })
 

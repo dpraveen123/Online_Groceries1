@@ -3,6 +3,7 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { closeMaxProductModal, toogleSideBar, fetchOrders } from './store/actions/shop'
 import MainLayout from './Layouts/MainLayout';
+import AdminMainLayout from './Layouts/AdminMainLayout';
 import Homepage from './containers/pages/Index';
 import Vegetables from './containers/pages/Vegetables';
 import Fruits from './containers/pages/Fruits';
@@ -17,12 +18,12 @@ import './App.css';
 import SpecificOrder from './containers/pages/SpecificOrder';
 import Sign from './containers/pages/sign.js';
 import Orders from './containers/pages/Orders';
-import firebase from "firebase";
+import firebase from './store/reducers/firebase';
 import admin from './admin/admin.js';
 
 class App extends Component {
     // false
-         state = { isSignedIn: false }
+         state = { isSignedIn: false,isAdmin:0 }
       uiConfig = {
         signInFlow: "popup",
         signInOptions: [
@@ -42,15 +43,44 @@ class App extends Component {
     //     })
     //   }   
     componentDidMount(){
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                console.log("user is thre")
+                // alert("user is there")
+                firebase.firestore().collection('admin').doc(user.uid).get().then(l=>{
+                    console.log("data is",l.data())
+                  
+                  if(l.data()==null){
+                    //   alert("he is not admin")
+                    this.props.fetchProducts();
+                    this.props.fetchOrders();
+                    this.setState({isAdmin:0})
+                  }else{
+                    //   alert("he is admin")
+                    this.setState({isAdmin:1})
+
+                  }
+                }).catch(e=>{
+                    alert("no such doc")
+                })
+
+            }else{
+                this.setState({isAdmin:0})
+                // alert("no user is there")
+            }
+
+        })
         // console.log(firebase.database().ref())
-              this.props.fetchProducts();
-        this.props.fetchOrders();
+            
+
     }
     render() {
         return (
             <div className="App">
-
-                <div>
+                <div>{
+                         this.state.isAdmin===0?<div>
+                       
+                        <div>
                     <MainLayout
                         storeCartCount={this.props.storeCartItemsCount}
                         showModal={this.props.showModalProp}
@@ -75,9 +105,40 @@ class App extends Component {
                         </Switch>
                      
                     </MainLayout>
+                </div>
+                         </div>:<div>
+                         <div>
+                    <AdminMainLayout
+                        storeCartCount={this.props.storeCartItemsCount}
+                        showModal={this.props.showModalProp}
+                        closeModalProp={this.props.closeModalProp}
+                        modalMessage={this.props.modalMessageProp}
+                        showSideBar={this.props.showSideNavigationProp}
+                        toggleSideBar={this.props.toggleSideBarProp}>
+
+                        <Switch>
+                            <Route path={'/'} exact component={Homepage} />
+                            {/* <Route path={'/vegetables'} component={Vegetables} />
+                            <Route path={'/fruits'} component={Fruits} />
+                            <Route path={'/herbs'} component={Herbs} />
+                            <Route path={'/orders/:order_id'} component={SpecificOrder} />
+                            <Route path={'/orders'} component={Orders} />
+                            <Route path={'/cart'} component={Cart} />
+                           
+                            <Route path={'/checkout'} component={Checkout} />
+                            <Route exact path={'/admin'} component={ admin }/> */}
+                            {/*always redirect to index*/}
+                            <Redirect to={'/'} />
+                        </Switch>
+                     
+                    </AdminMainLayout>
 
                    
                 </div>
+                         </div>
+                         }</div>
+                 
+               
                 <Switch>
                     <Route exact path={'/admin'} component={ admin }/>
                     </Switch>
