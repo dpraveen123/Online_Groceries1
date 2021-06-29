@@ -64,7 +64,8 @@ app.post('/create_order', async (req, res) => {
             cart: order_obj['cart'],
             price: order_obj['price'],
             date: order_obj['date'],
-            user_details: order_obj['user']
+            user_details: order_obj['user'],
+            isPaid:0,
         })
             .then(() => {
                 console.log("Document successfully written! by backend broooo");
@@ -77,7 +78,8 @@ app.post('/create_order', async (req, res) => {
             price: order_obj['price'],
             date: order_obj['date'],
             cart: order_obj['cart'],
-            user: order_obj['user']
+            user: order_obj['user'],
+            isPaid:0,
         })
         res.json({ order_id: order_id, code: 200 })
 
@@ -117,8 +119,8 @@ app.post('/capture_transaction', async (req, res) => {
                     console.log(transaction_data)
                     let order = transaction_data.cart
                     const firestore = admin.firestore()
-                    await firestore.collection('users').doc(transaction_data.user_id).collection('orders').doc(order_id).update({ payment_id: payment_id })
-                    await firestore.collection('razorpay_orders').doc(order_id).update({ payment_id: payment_id })
+                    await firestore.collection('users').doc(transaction_data.user_id).collection('orders').doc(order_id).update({ payment_id: payment_id ,isPaid:1})
+                    await firestore.collection('razorpay_orders').doc(order_id).update({ payment_id: payment_id ,isPaid:1})
                     for (var i = 0; i < order.length; i++) {
                         const dec = admin.firestore.FieldValue.increment(-order[i].count)
 
