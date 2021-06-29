@@ -177,6 +177,7 @@ export function fetchOrders() {
 
     }
 }
+  
 
 export const closeMaxProductModal = () => {
     return {

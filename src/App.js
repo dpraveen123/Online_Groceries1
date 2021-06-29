@@ -65,6 +65,7 @@ class App extends Component {
                 })
 
             }else{
+                this.setState({isAdmin:0})
                 // alert("no user is there")
             }
 

@@ -13,7 +13,7 @@ const AdminmainMenu = (props) => {
 
            <Link to="/"> <span className="navbar-brand">TamatarWala</span></Link>
             
-            <NavLink to="/cart" className="nav-link active cart"> Cart <span className="badge badge-light">{props.cartItemNumber}</span></NavLink>
+            {/* <NavLink to="/cart" className="nav-link active cart"> Orders<span className="badge badge-light">{props.cartItemNumber}</span></NavLink> */}
             <button
                 className="navbar-toggler"
                 onClick={props.toggleSideBar}>
