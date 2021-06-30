@@ -4,11 +4,15 @@ import {Link} from 'react-router-dom';
 import OrderProduct from '../../components/Order/OrderProducts';
 import OrderProductTotals from '../../components/Order/OrderProductTotals';
 import PropTypes from 'prop-types';
-import firebase from "firebase";
+// import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-
-class SpecificOrder extends Component {false
-    state = { isSignedIn: false }
+import firebase from '../../store/reducers/firebase'
+class SpecificOrder extends Component {
+    constructor(props){
+        super(props);
+    }
+    false
+    state = { isSignedIn: false,data:[] }
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -22,6 +26,11 @@ class SpecificOrder extends Component {false
   }
 
   componentDidMount = () => {
+    //   console.log(this.props.match.params.order_id,"is id")
+      firebase.firestore().collection('razorpay_orders').doc(this.props.match.params.order_id).get().then(l=>{
+        // console.log(l.data().cart,"is llllll")
+        this.setState({data:l.data().cart})
+    })
     firebase.auth().onAuthStateChanged(user => {
       this.setState({ isSignedIn: !!user })
     })
@@ -30,14 +39,12 @@ class SpecificOrder extends Component {false
         this.props.updateCartProductCountProp(field_value, product_id)
     };
 
-    render() {
-
-        let orderContent = null;
+    render() {let orderContent = null;
       
 
-        if (this.props.orderProductsProp) {
+        if (this.state.data) {
             let orderPriceCountArray = [];
-            let orderProducts = this.props.orderProductsProp
+            let orderProducts = this.state.data
                 .map((productsInOrder) => {
                     // fetch product information from source based on id
                     // product information can also be stored in state
@@ -98,14 +105,20 @@ class SpecificOrder extends Component {false
             }
         </div>
         )
+
+        
     }
 }
 
 const mapStateToProps = (state,ownProps) => {
     let order_id = ownProps.match.params.order_id
     let order = state.orders.find(spec_order=>spec_order.doc_id==order_id)
-
+    // console.log("specific orders",order,order_id)
+    //  firebase.firestore().collection('razorpay_orders').doc(order_id).get().then(l=>{
+    //      console.log(l.data().cart,"is llllll")
+    //  })
     return {
+        doc_id: ownProps.match.params.order_id,
         productProps: state.products,
         orderProductsProp: order?order['cart']:null,
         price:order?order.price:null,

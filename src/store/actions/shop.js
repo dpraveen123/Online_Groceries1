@@ -53,7 +53,11 @@ export const fetchOrdersFailed = () => {
         type: actionTypes.FETCH_ORDERS_FAILED
     }
 }
-
+export const AdminOrder=()=>{
+    return{
+        type:actionTypes.ADMIN_ORDERS
+    }
+}
 export function fetchProducts() {
     return (dispatch) => {
         dispatch(requestProducts());
@@ -107,6 +111,7 @@ export const placeOrder = () => {
         type: actionTypes.ORDER_PLACING
     }
 }
+
 
 // export function reduceQuantities(order){
 //     const firestore = firebase.firestore()
@@ -177,7 +182,15 @@ export function fetchOrders() {
 
     }
 }
-  
+//   export function AdminOrders(){
+//       return dispatch=>{
+//           dispatch(AdminOrder());
+//           const db = firebase.firestore();
+//           return db.collection('razorpay_orders').where('isDelivered','==',0).get().then(res=>{
+
+//           })
+//       }
+//   }
 
 export const closeMaxProductModal = () => {
     return {

@@ -37,7 +37,7 @@ class AdminmenuComponent extends React.Component {
     return (
         <React.Fragment>
                <Nav className="nav-main">  <MenuItem linkTo={'/'}>Orders</MenuItem>
-            <MenuItem linkTo={'/vegetables'}>Change Stock</MenuItem>
+            <MenuItem linkTo={'/ChangeStock'}>Change Stock</MenuItem>
             {/* <MenuItem linkTo={'/Fruits'}>Fruits</MenuItem>
             <MenuItem linkTo={'/Herbs'}>Herbs</MenuItem>
             <MenuItem linkTo={'/orders'}>Orders</MenuItem>             */}
