@@ -20,10 +20,13 @@ import Sign from './containers/pages/sign.js';
 import Orders from './containers/pages/Orders';
 import firebase from './store/reducers/firebase';
 import admin from './admin/admin.js';
+import AdminOrders from './containers/pages/AdminOrders';
+import AdminSpecificOrder from './containers/pages/AdminSpecificOrder';
+import ChangeStock from './containers/ChangeStock';
 
 class App extends Component {
     // false
-         state = { isSignedIn: false,isAdmin:0 }
+         state = { isSignedIn: false,isAdmin:'' }
       uiConfig = {
         signInFlow: "popup",
         signInOptions: [
@@ -44,7 +47,7 @@ class App extends Component {
     //   }   
     componentDidMount(){
         firebase.auth().onAuthStateChanged(user => {
-            if (user) {
+            if (user) { 
                 console.log("user is thre")
                 // alert("user is there")
                 firebase.firestore().collection('admin').doc(user.uid).get().then(l=>{
@@ -61,11 +64,14 @@ class App extends Component {
 
                   }
                 }).catch(e=>{
+                    this.setState({isAdmin:0})
                     alert("no such doc")
                 })
 
             }else{
                 this.setState({isAdmin:0})
+                this.props.fetchProducts();
+                this.props.fetchOrders();
                 // alert("no user is there")
             }
 
@@ -117,7 +123,10 @@ class App extends Component {
                         toggleSideBar={this.props.toggleSideBarProp}>
 
                         <Switch>
-                            <Route path={'/'} exact component={Homepage} />
+                        <Route path={'/'} exact component={AdminOrders} />
+                            <Route path={'/orders/:order_id'} component={AdminSpecificOrder} /> 
+                            <Route path={'/ChangeStock'} component={ChangeStock} /> 
+
                             {/* <Route path={'/vegetables'} component={Vegetables} />
                             <Route path={'/fruits'} component={Fruits} />
                             <Route path={'/herbs'} component={Herbs} />

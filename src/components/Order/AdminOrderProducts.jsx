@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const orderProducts = (props) => {
+const AdminorderProducts = (props) => {
     
     // let currencyKeys = Object.keys(props.currency);
     // let currencyName = props.currency[currencyKeys[1]];
@@ -45,7 +45,7 @@ const orderProducts = (props) => {
     )
 };
 
-orderProducts.propTypes = {
+AdminorderProducts.propTypes = {
     productPhoto: PropTypes.string.isRequired,
     productName: PropTypes.string.isRequired,
     productCategory: PropTypes.string.isRequired,
@@ -54,4 +54,4 @@ orderProducts.propTypes = {
    
 };
 
-export default orderProducts;
+export default AdminorderProducts;

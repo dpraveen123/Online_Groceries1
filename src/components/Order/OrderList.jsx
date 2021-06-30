@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const orderList = (props) => {
-    console.log("props from orderlist",props)
+    console.log("props from orderlist",props.orderId)
     // let currencyKeys = Object.keys(props.currency);
     // let currencyName = props.currency[currencyKeys[1]];
     return (
