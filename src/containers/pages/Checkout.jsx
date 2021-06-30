@@ -86,12 +86,13 @@ class Checkout extends Component {
                 let url = 'https://us-central1-online-groceries-d4d42.cloudfunctions.net/payment/capture_transaction'  //paste the url here
                 let url1 = 'http://localhost:4000/create_order'
                 axios.post(url, response).then(r => {
+
                     if (r.data.code == 200) {
                         let order_id = r.data.order_id
-                        alert("changing stock")
+                        // alert("changing stock")
                         // func(order_id, order['price'])
                     } else {
-                        alert("Error placing the order")
+                        // alert("Error placing the order")
                     }
                 })
                 // this.setState({loading:true})
@@ -165,7 +166,9 @@ class Checkout extends Component {
         } else {
             this.setState({correctCardInfo: true});
         }
-        this.setState({paymentMethod: event.target.value})
+        this.state.paymentMethod= event.target.value
+        this.setState({paymentMethod: this.state.paymentMethod})
+        console.log("you selected",this.state.paymentMethod)
     };
 
     confirmOrderHandler = (event,shoppingTotal) => {
@@ -189,8 +192,12 @@ class Checkout extends Component {
         order['price'] = shoppingTotal
         // todo
         // create stripe token for payments
-        
-        this.props.confirmOrderProp(order,this.paymentProcess.bind(this))
+        // if(this.state.paymentMethod==='creditCard'){
+
+        // }else if(this.state.paymentMethod==='onDelivery'){
+            
+        // }
+        this.props.confirmOrderProp(order,this.paymentProcess.bind(this),this.state.paymentMethod)
 
 
     };
@@ -353,22 +360,22 @@ class Checkout extends Component {
                                 customerInfo={this.state.customerInfo}
                                 inputChanged={(event, identifier) => this.customerInfoChangeHandler(event, identifier)}/>
                             {/* delivery options selection fields */}
-                            <h4 className="">Delivery Options</h4>
-                            <DeliveryOptions
+                            {/* <h4 className="">Delivery Options</h4> */}
+                            {/* <DeliveryOptions
                                 currency={this.props.usedCurrencyProp}
                                 deliveryOptions={this.props.deliveryOptions}
                                 usedDeliveryOption={this.state.usedDeliveryOption}
-                                deliveryOptionChanged={this.deliveryOptionChangeHandler}/>
+                                deliveryOptionChanged={this.deliveryOptionChangeHandler}/> */}
 
-                            {/* <h4 className="mb-3">Payment Method</h4> */}
+                            <h4 className="mb-3">Payment Method</h4>
                             {/* payment option selection field */}
-                            {/* <PaymentOptions
+                            <PaymentOptions
                                 paymentMethod={this.state.paymentMethod}
-                                paymentOptionChanged={this.paymentOptionChangeHandler}/> */}
+                                paymentOptionChanged={this.paymentOptionChangeHandler}/>
                             {/* payment section */}
-                            {/* <div>
-                                {chosenPaymentMethod}
-                            </div> */}
+                            <div>
+                                {/* {chosenPaymentMethod} */}
+                            </div>
 
                             <hr className="mb-4"/>
                             <button
@@ -420,7 +427,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        confirmOrderProp: (order,func) => dispatch(confirmOrder(order, func, ownProps)),
+        confirmOrderProp: (order,func,paymentMethod) => dispatch(confirmOrder(order, func,paymentMethod, ownProps)),
         setPromoCodeProp: (promoCode, percentage) => dispatch(setPromoCode(promoCode, percentage)),
         confirmOrderSuccProp:()=>dispatch(confirmOrderSuccess()),
         fetchProdProp:()=>dispatch(fetchProducts())
