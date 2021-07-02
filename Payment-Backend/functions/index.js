@@ -59,7 +59,9 @@ app.post('/create_order', async (req, res) => {
             return
         }
         console.log("upto firebase brooooooooo");
-
+        // await admin.firestore().collection('users').doc(req.body.user_id).set({
+        //     user_details:order_obj['user'],
+        // })
         await admin.firestore().collection('users').doc(req.body.user_id).collection('orders').doc(order_id).set({
             cart: order_obj['cart'],
             price: order_obj['price'],
@@ -106,6 +108,40 @@ async function get_order(order_id) {
     return data
 }
 
+app.post('/onDelivery', async (req, res) => {
+
+    let order_id=req.body.orderId;
+    let transaction_data = await get_order(order_id)
+
+    if (transaction_data) {
+      
+                    console.log(transaction_data)
+                    let order = transaction_data.cart
+                    const firestore = admin.firestore()
+                    // await firestore.collection('users').doc(transaction_data.user_id).collection('orders').doc(order_id).update({ payment_id: payment_id ,isPaid:1})
+                    // await firestore.collection('razorpay_orders').doc(order_id).update({ payment_id: payment_id ,isPaid:1})
+                    for (var i = 0; i < order.length; i++) {
+                        const dec = admin.firestore.FieldValue.increment(-order[i].count)
+
+                        firestore.collection('products').doc(order[i].doc_id).update({
+                            quantity: dec
+                        })
+                    }
+
+                    res.json({ code: 200, msg: 'payment success' })
+
+                
+          
+     
+    } else {
+        res.json({
+            msg: 'capture failed',
+            code: 404
+        })
+    }
+
+})
+
 app.post('/capture_transaction', async (req, res) => {
 
     let signature = req.body.razorpay_signature
@@ -151,6 +187,7 @@ app.post('/capture_transaction', async (req, res) => {
     }
 
 })
+
 app.post('/capture_transaction_webhook', async (req, res) => {
 
     let contains = req.body.contains

@@ -23,6 +23,9 @@ import admin from './admin/admin.js';
 import AdminOrders from './containers/pages/AdminOrders';
 import AdminSpecificOrder from './containers/pages/AdminSpecificOrder';
 import ChangeStock from './containers/ChangeStock';
+import milk from './containers/pages/milk';
+import customerInputs from './components/Checkout/Forms/CustomerInputs';
+import milkCheckout from './containers/pages/milkCheckout';
 
 class App extends Component {
     // false
@@ -105,7 +108,9 @@ class App extends Component {
                             <Route path={'/cart'} component={Cart} />
                            
                             <Route path={'/checkout'} component={Checkout} />
-                            <Route exact path={'/admin'} component={ admin }/>
+                            <Route exact path={'/Milk'} component={ milk }/>
+                            <Route exact path={'/Milk/subscription'} component={ milkCheckout }/>
+                            
                             {/*always redirect to index*/}
                             <Redirect to={'/'} />
                         </Switch>

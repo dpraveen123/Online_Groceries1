@@ -304,183 +304,115 @@ class Checkout extends Component {
     };
 
     render() {
+      console.log("props getted babaiiii",this.props.location.aboutProps)
+        // let productsPrices = [];
+        // let chosenPaymentMethod = null;
+        // // let currencyKeys = Object.keys(this.props.usedCurrencyProp);
+        // // let currencyValue = this.props.usedCurrencyProp[currencyKeys[0]];
 
-        let productsPrices = [];
-        let chosenPaymentMethod = null;
-        // let currencyKeys = Object.keys(this.props.usedCurrencyProp);
-        // let currencyValue = this.props.usedCurrencyProp[currencyKeys[0]];
+        // const cartProducts = this.props.cartProductsProps.map((cartProduct, index) => {
+        //     // fetch product information from source based on id
+        //     let productFromStore = this.props.productsProps.find(product => product.id === cartProduct.id);
+        //     productsPrices.push({
+        //         price: productFromStore.quantity > 0 ?
+        //             Math.round(productFromStore.price ) : 0, count:
+        //         cartProduct.count
+        //     });
+        //     return (
+        //         <CheckoutCartProduct
+        //             key={index}
+        //             checkoutProductName={productFromStore.name}
+        //             checkoutProductCategory={productFromStore.category}
+        //             checkoutProductPrice={Math.round(productFromStore.price )}
+        //             checkoutProductImage={productFromStore.img}
+        //             checkoutCartCount={cartProduct.count}
+        //             currency={this.props.usedCurrencyProp}
+        //         />
+        //     )
+        // });
 
-        const cartProducts = this.props.cartProductsProps.map((cartProduct, index) => {
-            // fetch product information from source based on id
-            let productFromStore = this.props.productsProps.find(product => product.id === cartProduct.id);
-            productsPrices.push({
-                price: productFromStore.quantity > 0 ?
-                    Math.round(productFromStore.price ) : 0, count:
-                cartProduct.count
-            });
-            return (
-                <CheckoutCartProduct
-                    key={index}
-                    checkoutProductName={productFromStore.name}
-                    checkoutProductCategory={productFromStore.category}
-                    checkoutProductPrice={Math.round(productFromStore.price )}
-                    checkoutProductImage={productFromStore.img}
-                    checkoutCartCount={cartProduct.count}
-                    currency={this.props.usedCurrencyProp}
-                />
-            )
-        });
+        // let shippingPrice = this.state.shippingPrice ? Math.round(this.state.shippingPrice ) : 0;
+        // let productTotals = productsPrices.reduce((acc, el) => acc + (el.price * el.count), 0);
+        // let vatPercentage = this.props.vatProps > 0 ? this.props.vatProps / 100 : 0;
+        // let vat = productTotals > 0 ? Math.round(productTotals * vatPercentage) : 0;
+        // let percentageDiscount = this.props.usedPromoCodeProp ? this.props.usedPromoCodeProp.percentage / 100 : 0;
+        // let discountAmount = productTotals * percentageDiscount;
+        // let shoppingTotal = productTotals > 0 ? ((productTotals + vat + shippingPrice) - discountAmount) : 0;
 
-        let shippingPrice = this.state.shippingPrice ? Math.round(this.state.shippingPrice ) : 0;
-        let productTotals = productsPrices.reduce((acc, el) => acc + (el.price * el.count), 0);
-        let vatPercentage = this.props.vatProps > 0 ? this.props.vatProps / 100 : 0;
-        let vat = productTotals > 0 ? Math.round(productTotals * vatPercentage) : 0;
-        let percentageDiscount = this.props.usedPromoCodeProp ? this.props.usedPromoCodeProp.percentage / 100 : 0;
-        let discountAmount = productTotals * percentageDiscount;
-        let shoppingTotal = productTotals > 0 ? ((productTotals + vat + shippingPrice) - discountAmount) : 0;
-
-        if (this.state.paymentMethod === "creditCard") {
-            chosenPaymentMethod =
-                <div className={'ml-4 p-3 shop-card-field'}>
-                    {/* <CardElement onChange={(element) => this.creditCardHandler(element)}/> */}
-                </div>
-        } else if (this.state.paymentMethod === "onDelivery") {
-            chosenPaymentMethod =
-                <div className={'ml-4 p-3'}>You will pay when the product is delivered to you.</div>
-        }
+        // if (this.state.paymentMethod === "creditCard") {
+        //     chosenPaymentMethod =
+        //         <div className={'ml-4 p-3 shop-card-field'}>
+        //             {/* <CardElement onChange={(element) => this.creditCardHandler(element)}/> */}
+        //         </div>
+        // } else if (this.state.paymentMethod === "onDelivery") {
+        //     chosenPaymentMethod =
+        //         <div className={'ml-4 p-3'}>You will pay when the product is delivered to you.</div>
+        // }
 
         return (
 
-            <div className="container py-4">
-                  <div className="container order py-4">
-                {this.props.cartTotalProps <= 0 ? <Redirect to="/cart"/> : null}
+            <div className="container py-4" style={{marginTop:50}}>
+                     {/* <h4>Yo</h4> */}
+                      <div className="col-md-8 order-md-1 " >
+                     <img src={this.props.location.aboutProps.url} style={{width:'46%',height:150,marginLeft:'30%'}}></img>
 
-                {this.state.showAlert ? <Alert
-                        alertType={this.state.alertType}
-                        closeAlert={this.closeAlertHandler}>
-                        {this.state.alertMessage}
-                    </Alert>
-                    : null
-                }
-
-                <div className="row">
-                    
-                    <div className="col-md-4 order-md-2 mb-4">
-
-                        <h4 className="d-flex justify-content-between align-items-center mb-3">
-                            <span className="text-muted">Order Review</span>
-                            <span className="badge badge-secondary badge-pill">{this.props.cartTotalProps}</span>
-                        </h4>
-
-                        <ul className="list-group mb-3">
-
-                            {/* items in cart */}
-                            {cartProducts}
-
-                            {/* used promo codes */}
-                            {this.props.usedPromoCodeProp ?
-                                <PromoCodeValue
-                                    currency={this.props.usedCurrencyProp}
-                                    usedPromoCode={this.props.usedPromoCodeProp}
-                                    discountAmount={discountAmount}/> : null}
-
-                            {/* checkout totals */}
-                            <CheckoutCartTotals
-                                productTotals={productTotals}
-                                vat={vat}
-                                shippingPrice={shippingPrice}
-                                shoppingTotal={shoppingTotal}
-                                currency={this.props.usedCurrencyProp}/>
-                        </ul>
-
-                        {/*promo code form */}
-                        <PromoCodeForm
-                            setPromoCode={this.setPromoCode}
-                            promoCodeChangeHandler={(event) => this.promoCodeChangeHandler(event)}
-                            promoCode={this.state.promoCode}
-                        />
-
-                    </div>
-                    
-                    <div className="col-md-8 order-md-1 ">
                         <h4 className="mb-3">Billing Information</h4>
                         <form className="shop-form shop-bg-white p-3" noValidate>
                             {/* customer details form fields */}
                             <CustomerInputs
                                 customerInfo={this.state.customerInfo}
                                 inputChanged={(event, identifier) => this.customerInfoChangeHandler(event, identifier)}/>
-                            {/* delivery options selection fields */}
-                            {/* <h4 className="">Delivery Options</h4> */}
-                            {/* <DeliveryOptions
-                                currency={this.props.usedCurrencyProp}
-                                deliveryOptions={this.props.deliveryOptions}
-                                usedDeliveryOption={this.state.usedDeliveryOption}
-                                deliveryOptionChanged={this.deliveryOptionChangeHandler}/> */}
-
-                            <h4 className="mb-3">Payment Method</h4>
-                            {/* payment option selection field */}
-                            <PaymentOptions
-                                paymentMethod={this.state.paymentMethod}
-                                paymentOptionChanged={this.paymentOptionChangeHandler}/>
-                            {/* payment section */}
-                            <div>
-                                {/* {chosenPaymentMethod} */}
-                            </div>
-
                             <hr className="mb-4"/>
                             <button
                                 disabled={!(this.state.makeOrder)}
                                 className="btn shop-btn-secondary btn-lg btn-block"
-                                onClick={(event) => this.confirmOrderHandler(event,shoppingTotal)}
+                                // onClick={(event) => this.confirmOrderHandler(event,shoppingTotal)}
                                 // onClick={(event) => this.paymentProcess(event)}
                                 >
                                 Confirm Order
                             </button>
                         </form>
                     </div>
-                </div>
-                {this.state.loading && <Loading loading={this.state.loading} />}
-            </div>
             </div>
 
         )
     }
 }
 
-Checkout.propTypes = {
-    productsProps: PropTypes.array.isRequired,
-    cartProductsProps: PropTypes.array.isRequired,
-    cartTotalProps: PropTypes.number.isRequired,
-    promoCodeProp: PropTypes.array,
-    usedPromoCodeProp: PropTypes.object,
-    deliveryOptions: PropTypes.array.isRequired,
-    usedCurrencyProp: PropTypes.object.isRequired,
-    vatProps: PropTypes.number
-};
+// Checkout.propTypes = {
+//     productsProps: PropTypes.array.isRequired,
+//     cartProductsProps: PropTypes.array.isRequired,
+//     cartTotalProps: PropTypes.number.isRequired,
+//     promoCodeProp: PropTypes.array,
+//     usedPromoCodeProp: PropTypes.object,
+//     deliveryOptions: PropTypes.array.isRequired,
+//     usedCurrencyProp: PropTypes.object.isRequired,
+//     vatProps: PropTypes.number
+// };
 
-Checkout.defaultProps = {
-    shippingPriceProp: 0
-};
+// Checkout.defaultProps = {
+//     shippingPriceProp: 0
+// };
 
 const mapStateToProps = state => {
     return {
-        productsProps: state.products,
-        cartProductsProps: state.cart,
-        cartTotalProps: state.cartTotal,
-        vatProps: state.vat,
-        promoCodeProp: state.promoCode,
-        usedPromoCodeProp: state.usedPromoCode,
-        deliveryOptions: state.deliveryOptions,
-        usedCurrencyProp: state.usedCurrency
+        // productsProps: state.products,
+        // cartProductsProps: state.cart,
+        // cartTotalProps: state.cartTotal,
+        // vatProps: state.vat,
+        // promoCodeProp: state.promoCode,
+        // usedPromoCodeProp: state.usedPromoCode,
+        // deliveryOptions: state.deliveryOptions,
+        // usedCurrencyProp: state.usedCurrency
     }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        confirmOrderProp: (order,func,paymentMethod) => dispatch(confirmOrder(order, func,paymentMethod, ownProps)),
-        setPromoCodeProp: (promoCode, percentage) => dispatch(setPromoCode(promoCode, percentage)),
-        confirmOrderSuccProp:()=>dispatch(confirmOrderSuccess()),
-        fetchProdProp:()=>dispatch(fetchProducts())
+        // confirmOrderProp: (order,func,paymentMethod) => dispatch(confirmOrder(order, func,paymentMethod, ownProps)),
+        // setPromoCodeProp: (promoCode, percentage) => dispatch(setPromoCode(promoCode, percentage)),
+        // confirmOrderSuccProp:()=>dispatch(confirmOrderSuccess()),
+        // fetchProdProp:()=>dispatch(fetchProducts())
     }
 };
 

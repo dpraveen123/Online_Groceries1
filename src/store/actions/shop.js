@@ -128,7 +128,6 @@ export const placeOrder = () => {
 
 export const confirmOrder = (order, func, paymentMethod,ownProps,) => {
     // console.log(paymentMethod,"is method",typeof(paymentMethod))
-    
     return dispatch => {
         // func(order_id, order['price'])
         // dispatch(placeOrder());
@@ -146,12 +145,16 @@ export const confirmOrder = (order, func, paymentMethod,ownProps,) => {
                         func(order_id, order['price'])
                         }else if(paymentMethod=='onDelivery'){
                             dispatch(confirmOrderSuccess())
+    // alert("confirming order")
+
                         }
                     } else {
                         alert("Error placing the order brooooo")
                     }
                 })
-
+                firebase.firestore().collection('users').doc(user.uid).set({
+                    user_details:order['user']
+                })
             } else {
                 dispatch(confirmOrderFailure())
                 ownProps.history.push('/cart');

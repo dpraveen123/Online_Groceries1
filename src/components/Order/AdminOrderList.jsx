@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Button} from 'react-bootstrap'
 import firebase from 'firebase';
+import axios from 'axios'
 const AdminorderList = (props) => {
    function clicked(){
          console.log("button clikced")
@@ -17,6 +18,7 @@ const AdminorderList = (props) => {
                         <div className="col-sm-4 col-md-5 shop-cart-product-details">
                             <h5 className="shop-cart-name text-capitalize">Order ID:{props.orderId}</h5>
                             {props.paymentId && <h5 className="shop-cart-name text-capitalize">Payment ID:{props.paymentId}</h5>}
+                            <h5 className="shop-cart-name text-capitalize">Mode:{props.mode}</h5>
                         </div>
                         <div className="col-sm-4 col-md-3">
                             <div className="row">
@@ -37,10 +39,11 @@ const AdminorderList = (props) => {
                             <div className="row">
                                 <div className="col-sm-6 text-left">
                                     <h6 className={'shop-cart-item-price'}>
-                                       Adress:
+                                       Customer Details:
                                       {/* number:{props.adress.mobile} */}
                                          {/* {props.orderPrice.toLocaleString()}     */}
                                     </h6>
+                                    <hr></hr>
                                     <h6 className={'shop-cart-item-price'}>
                                         {/* {props.date} */}
                                         name:{props.adress.firstName+props.adress.secondName}
@@ -66,15 +69,42 @@ const AdminorderList = (props) => {
                                 <Button variant="primary"  style={{marginTop:-5,marginLeft:10}} 
                                 onClick={()=>{
                                     console.log("cliked brooo",)
-                                    firebase.firestore().collection('razorpay_orders').doc(props.orderId).update({
-                                        isDelivered:1
-                                    }).then(l=>{
-                                        props.CheckOrders();
-                                    })
-                                    firebase.firestore().collection('users').doc(props.userUid).collection('orders').doc(props.orderId).update({
-                                        isDelivered:1
-
-                                    })
+                                  
+                                    if(props.mode==='onDelivery'){
+                                        firebase.firestore().collection('users').doc(props.userUid).collection('orders').doc(props.orderId).update({
+                                            isPaid:1,
+                                            isDelivered:1
+                                        })
+                                        firebase.firestore().collection('razorpay_orders').doc(props.orderId).update({
+                                            isPaid:1,
+                                            isDelivered:1
+                                        }).then(l=>{
+                                            props.CheckOrders();
+                                        })
+                                        let url = 'https://us-central1-online-groceries-d4d42.cloudfunctions.net/payment/onDelivery'  //paste the url here
+                                        let url1 = 'http://localhost:4000/create_order'
+                                        axios.post(url, {orderId:props.orderId}).then(r => {
+                        
+                                            if (r.data.code == 200) {
+                                                let order_id = r.data.order_id
+                                                // alert("changing stock")
+                                                // func(order_id, order['price'])
+                                            } else {
+                                                // alert("Error placing the order")
+                                            }
+                                        })
+                                    }else{
+                                        firebase.firestore().collection('razorpay_orders').doc(props.orderId).update({
+                                            isDelivered:1
+                                        }).then(l=>{
+                                            props.CheckOrders();
+                                        })
+                                        firebase.firestore().collection('users').doc(props.userUid).collection('orders').doc(props.orderId).update({
+                                            isDelivered:1
+    
+                                        })
+                                     
+                                    }
                                 }}
                                 >Yes</Button>
                                 
