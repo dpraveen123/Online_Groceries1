@@ -126,7 +126,9 @@ export const placeOrder = () => {
 
 // }
 
-export const confirmOrder = (order, func, ownProps) => {
+export const confirmOrder = (order, func, paymentMethod,ownProps,) => {
+    // console.log(paymentMethod,"is method",typeof(paymentMethod))
+    
     return dispatch => {
         // func(order_id, order['price'])
         // dispatch(placeOrder());
@@ -139,9 +141,14 @@ export const confirmOrder = (order, func, ownProps) => {
                 axios.post(url, { user_id: user.uid, amount: order['price'], order: { ...order, date: new Date().toLocaleString() } }).then(r => {
                     if (r.data.code == 200) {
                         let order_id = r.data.order_id
+                        if(paymentMethod=='creditCard'){
+                            // alert(paymentMethod,typeof(paymentMethod))
                         func(order_id, order['price'])
+                        }else if(paymentMethod=='onDelivery'){
+                            dispatch(confirmOrderSuccess())
+                        }
                     } else {
-                        alert("Error placing the order")
+                        alert("Error placing the order brooooo")
                     }
                 })
 
@@ -169,7 +176,7 @@ export function fetchOrders() {
         return firebase.auth().onAuthStateChanged(user => {
 
             if (user) {
-                return db.collection('users').doc(user.uid).collection('orders').where("isPaid", "==", 1).get().then(res => {
+                return db.collection('users').doc(user.uid).collection('orders').where("isDelivered", "==", 0).get().then(res => {
                     const data = res.docs.map(doc => { const d = doc.data(); return { ...d, doc_id: doc.id } });
                     console.log("data of rders list is",data)
                     dispatch(fetchOrdersSuccess(data))

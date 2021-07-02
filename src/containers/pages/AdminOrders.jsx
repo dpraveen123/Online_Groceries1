@@ -20,23 +20,27 @@ class Orders extends Component {false
       signInSuccess: () => false
     }
   }
-
+   
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(user => {
       this.setState({ isSignedIn: !!user })
-      const db = firebase.firestore();
-      return db.collection('razorpay_orders').where('isDelivered','==',0).get().then(res=>{
-          var x=[]
-          res.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            // console.log(doc.id, " => ", doc.data());
-            x=x.concat({doc_id:doc.id,data:doc.data()})
-        });
-        // console.log("x is",x)
-        this.setState({data:x})
-      })
+      this.OrdersAre();
     })
   }   
+  OrdersAre=()=>{
+    const db = firebase.firestore();
+    return db.collection('razorpay_orders').where('isDelivered','==',0).get().then(res=>{
+        var x=[]
+        res.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.id, " => ", doc.data());
+          x=x.concat({doc_id:doc.id,data:doc.data()})
+      });
+      // console.log("x is",x)
+      this.setState({data:x})
+    })
+
+}
 
 
     render() {
@@ -60,6 +64,8 @@ class Orders extends Component {false
                             hist={this.props.history}
                             currency={this.props.usedCurrencyProp}
                             adress={order.data.user}
+                            userUid={order.data.user_id}
+                            CheckOrders={this.OrdersAre}
                         />
                     )
                 });
@@ -75,7 +81,7 @@ class Orders extends Component {false
                 </React.Fragment>
             )
         }else {
-            cartContent = <h5 className={'shop-empty-cart'}>Your orders are empty.
+            cartContent = <h5 className={'shop-empty-cart'}>You didn't get any order.
             </h5>;
         }
 
