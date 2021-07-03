@@ -5,7 +5,7 @@ import {addToCart,updateCartProductCount} from "../../store/actions/shop";
 import ProductCard from "../../components/ProductCard";
 import SecondaryLayout from "../../Layouts/SecondaryLayout";
 import EmptyCategoryPageContent from  '../../components/EmptyCategoryPageContent';
-import '../../components/css/Fruits.css';
+import '../../components/css/Milks.css';
 import {NavLink} from "react-router-dom";
 class Milk extends Component {
     render() {
@@ -41,7 +41,7 @@ class Milk extends Component {
                 })
         }
         return (<div className="css-11zk6ke">
-        <section className="Fruits">
+        <section className="Milk">
        <header className="css-1wu2h8j">
         <h1>
          Milk
