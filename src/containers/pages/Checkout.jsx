@@ -15,6 +15,8 @@ import PropTypes from 'prop-types';
 import formValidator from '../../Utility/formValidation';
 // import firebase from '../'
 import { Loading } from './Loading';
+
+import firebase from '../../store/reducers/firebase'
 // import $ from'jquery';
 // import {CardElement, injectStripe} from 'react-stripe-elements';
 
@@ -69,6 +71,54 @@ class Checkout extends Component {
             },
         };
 
+    }
+    componentDidMount=()=>{
+        firebase.auth().onAuthStateChanged(user => {
+            if(user){
+                firebase.firestore().collection('users').doc(user.uid).get().then(l=>{
+                    // console.log("l is",l.data())
+                    var x=l.data().user_details
+                    console.log("x is",x)
+               if(x!=undefined){
+                var array={
+                    firstName: {
+                        value: x.firstName,
+                        valid: false,
+                        touched: false,
+                        errorsMsg: '',
+                    },
+                    secondName:{
+                            value: x.secondName,
+                            valid: false,
+                            touched: false,
+                            errorsMsg: '',
+                    },
+                   email:{
+                        value: x.email,
+                        valid: false,
+                        touched: false,
+                        errorsMsg: '',
+                    },
+                     mobile:{
+                        value: x.mobile,
+                        valid: false,
+                        touched: false,
+                        errorsMsg: '',
+                    },
+                    address:{
+                        value: x.address,
+                        valid: false,
+                        touched: false,
+                        errorsMsg: '',
+                    }
+                   }
+                        this.setState({customerInfo:array,makeOrder:true})
+               }
+                })
+                // this.setState({firstName:this.state.firstName})
+
+            }
+        })
     }
     paymentProcess=(order_id,amount)=> {
         

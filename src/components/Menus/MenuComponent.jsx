@@ -41,6 +41,7 @@ class menuComponent extends React.Component {
           <Nav className="nav-main">  <MenuItem linkTo={'/'}>Home</MenuItem>
             <MenuItem linkTo={'/vegetables'}>Vegetables</MenuItem>
             <MenuItem linkTo={'/Fruits'}>Fruits</MenuItem>
+            <MenuItem linkTo={'/Milk'}>Milk</MenuItem>            
             <MenuItem linkTo={'/Herbs'}>Herbs</MenuItem>
             <MenuItem linkTo={'/orders'}>Orders</MenuItem>            
             <MenuItem linkTo={'/cart'} className="cart-main">
@@ -54,6 +55,7 @@ class menuComponent extends React.Component {
 :     <Nav><MenuItem linkTo={'/'}>Home</MenuItem>
 <MenuItem linkTo={'/vegetables'}>Vegetables</MenuItem>
 <MenuItem linkTo={'/Fruits'}>Fruits</MenuItem>
+<MenuItem linkTo={'/Milk'}>Milk</MenuItem>            
 <MenuItem linkTo={'/Herbs'}>Herbs</MenuItem>
 <MenuItem linkTo={'/orders'}>Orders</MenuItem>            
 {/* <MenuItem linkTo={'/cart'} className="cart-main">

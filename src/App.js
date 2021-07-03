@@ -23,7 +23,9 @@ import admin from './admin/admin.js';
 import AdminOrders from './containers/pages/AdminOrders';
 import AdminSpecificOrder from './containers/pages/AdminSpecificOrder';
 import ChangeStock from './containers/ChangeStock';
-import AdminChangeStock from './containers/pages/AdminchangeStock';
+import milk from './containers/pages/milk';
+import customerInputs from './components/Checkout/Forms/CustomerInputs';
+import milkCheckout from './containers/pages/milkCheckout';
 
 class App extends Component {
     // false
@@ -88,47 +90,49 @@ class App extends Component {
                     this.state.isAdmin === 0 ? <div>
 
                         <div>
-                            <MainLayout
-                                storeCartCount={this.props.storeCartItemsCount}
-                                showModal={this.props.showModalProp}
-                                closeModalProp={this.props.closeModalProp}
-                                modalMessage={this.props.modalMessageProp}
-                                showSideBar={this.props.showSideNavigationProp}
-                                toggleSideBar={this.props.toggleSideBarProp}>
+                    <MainLayout
+                        storeCartCount={this.props.storeCartItemsCount}
+                        showModal={this.props.showModalProp}
+                        closeModalProp={this.props.closeModalProp}
+                        modalMessage={this.props.modalMessageProp}
+                        showSideBar={this.props.showSideNavigationProp}
+                        toggleSideBar={this.props.toggleSideBarProp}>
 
-                                <Switch>
-                                    <Route path={'/'} exact component={Homepage} />
-                                    <Route path={'/vegetables'} component={Vegetables} />
-                                    <Route path={'/fruits'} component={Fruits} />
-                                    <Route path={'/herbs'} component={Herbs} />
-                                    <Route path={'/orders/:order_id'} component={SpecificOrder} />
-                                    <Route path={'/orders'} component={Orders} />
-                                    <Route path={'/cart'} component={Cart} />
+                        <Switch>
+                            <Route path={'/'} exact component={Homepage} />
+                            <Route path={'/vegetables'} component={Vegetables} />
+                            <Route path={'/fruits'} component={Fruits} />
+                            <Route path={'/herbs'} component={Herbs} />
+                            <Route path={'/orders/:order_id'} component={SpecificOrder} />
+                            <Route path={'/orders'} component={Orders} />
+                            <Route path={'/cart'} component={Cart} />
+                           
+                            <Route path={'/checkout'} component={Checkout} />
+                            <Route exact path={'/Milk'} component={ milk }/>
+                            <Route exact path={'/Milk/subscription'} component={ milkCheckout }/>
+                            
+                            {/*always redirect to index*/}
+                            <Redirect to={'/'} />
+                        </Switch>
+                     
+                    </MainLayout>
+                </div>
+                         </div>:<div>
+                         <div>
+                    <AdminMainLayout
+                        storeCartCount={this.props.storeCartItemsCount}
+                        showModal={this.props.showModalProp}
+                        closeModalProp={this.props.closeModalProp}
+                        modalMessage={this.props.modalMessageProp}
+                        showSideBar={this.props.showSideNavigationProp}
+                        toggleSideBar={this.props.toggleSideBarProp}>
 
-                                    <Route path={'/checkout'} component={Checkout} />
-                                    <Route exact path={'/admin'} component={admin} />
-                                    {/*always redirect to index*/}
-                                    <Redirect to={'/'} />
-                                </Switch>
+                        <Switch>
+                        <Route path={'/'} exact component={AdminOrders} />
+                            <Route path={'/orders/:order_id'} component={AdminSpecificOrder} /> 
+                            <Route path={'/ChangeStock'} component={ChangeStock} /> 
 
-                            </MainLayout>
-                        </div>
-                    </div> : <div>
-                        <div>
-                            <AdminMainLayout
-                                storeCartCount={this.props.storeCartItemsCount}
-                                showModal={this.props.showModalProp}
-                                closeModalProp={this.props.closeModalProp}
-                                modalMessage={this.props.modalMessageProp}
-                                showSideBar={this.props.showSideNavigationProp}
-                                toggleSideBar={this.props.toggleSideBarProp}>
-
-                                <Switch>
-                                    <Route path={'/'} exact component={AdminOrders} />
-                                    <Route path={'/orders/:order_id'} component={AdminSpecificOrder} />
-                                    <Route path={'/ChangeStock'} component={AdminChangeStock} />
-
-                                    {/* <Route path={'/vegetables'} component={Vegetables} />
+                            {/* <Route path={'/vegetables'} component={Vegetables} />
                             <Route path={'/fruits'} component={Fruits} />
                             <Route path={'/herbs'} component={Herbs} />
                             <Route path={'/orders/:order_id'} component={SpecificOrder} />

@@ -66,6 +66,7 @@ class Orders extends Component {false
                             adress={order.data.user}
                             userUid={order.data.user_id}
                             CheckOrders={this.OrdersAre}
+                            mode={order.data.mode}
                         />
                     )
                 });
