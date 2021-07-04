@@ -14,10 +14,11 @@ const AdminorderList = (props) => {
         <React.Fragment>
             <div className="row" >
                 <div className="col">
-                    <div className="row" style={{ cursor: 'pointer' }} onClick={() => { console.log("clickeed"); props.hist.push(`/orders/${props.orderId}`) }}>
+                {/* onClick={() => { console.log("clickeed"); props.hist.push(`/orders/${props.orderId}`) }} */}
+                    <div className="row" style={{ cursor: 'pointer' }} >
                         <div className="col-sm-4 col-md-5 shop-cart-product-details">
                             <h5 className="shop-cart-name text-capitalize">Order ID:{props.orderId}</h5>
-                            {props.paymentId && <h5 className="shop-cart-name text-capitalize">Payment ID:{props.paymentId}</h5>}
+                            {props.paymentId && <h5 className="shop-cart-name text-capitalize">SubscriptionType:{props.paymentId}</h5>}
                             <h5 className="shop-cart-name text-capitalize">Qunatity:{props.mode}L</h5>
                         </div>
                         <div className="col-sm-4 col-md-3">

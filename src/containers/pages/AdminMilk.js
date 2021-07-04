@@ -60,7 +60,7 @@ class Orders extends Component {
                         <AdminOrderList
                             orderPrice={Math.round(order.data.price)}
                             orderId={order.doc_id}
-                            paymentId={order.data.payment_id}
+                            paymentId={order.data.subscriptionType}
                             date={order.data.date}
                             hist={this.props.history}
                             currency={this.props.usedCurrencyProp}
