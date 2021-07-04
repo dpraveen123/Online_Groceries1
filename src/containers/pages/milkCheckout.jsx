@@ -400,7 +400,7 @@ class Checkout extends Component {
                                 <div className="col-md-8 order-md-1 " >
                                     <img src={this.props.location.aboutProps.url} style={{ width: '46%', height: 150, marginLeft: '30%' }}></img>
                                     <div style={{ marginTop: 30 }}>
-                                        <h6 style={{ float: 'left' }}>Please slect below option how much quantity you want {this.props.location.aboutProps.type} :{this.state.value} Leters</h6>
+                                        <h6 style={{ float: 'left' }}>Choose quantity :{this.state.value} L  ({this.props.location.aboutProps.type} )</h6>
                                         <div style={{ width: 50 }}>
                                             <NumericInput step={0.5} precision={2} value={this.state.value} style={{ width: 50 }} width="50"
                                                 onChange={(val) => { this.setState({ value: val }) }}

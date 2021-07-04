@@ -83,32 +83,32 @@ class Checkout extends Component {
                 var array={
                     firstName: {
                         value: x.firstName,
-                        valid: false,
-                        touched: false,
+                        valid: true,
+                        touched: true,
                         errorsMsg: '',
                     },
                     secondName:{
                             value: x.secondName,
-                            valid: false,
-                            touched: false,
+                            valid: true,
+                            touched: true,
                             errorsMsg: '',
                     },
                    email:{
                         value: x.email,
-                        valid: false,
-                        touched: false,
+                        valid: true,
+                        touched: true,
                         errorsMsg: '',
                     },
                      mobile:{
                         value: x.mobile,
-                        valid: false,
-                        touched: false,
+                        valid: true,
+                        touched: true,
                         errorsMsg: '',
                     },
                     address:{
                         value: x.address,
-                        valid: false,
-                        touched: false,
+                        valid: true,
+                        touched: true,
                         errorsMsg: '',
                     }
                    }
