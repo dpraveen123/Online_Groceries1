@@ -11,7 +11,9 @@ import CustomerInputs from '../../components/Checkout/Forms/CustomerInputs';
 import DeliveryOptions from '../../components/Checkout/Forms/DeliveryOptions'
 import PaymentOptions from '../../components/Checkout/Forms/Payments/PaymentOptions';
 import Alert from '../../components/UI/Alert/Alert';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import PropTypes from 'prop-types';
+import NumericInput from 'react-numeric-input';
 import formValidator from '../../Utility/formValidation';
 // import firebase from '../'
 import { Loading } from './Loading';
@@ -26,8 +28,12 @@ class Checkout extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            isSignedin: 0,
+            isAdded: 0,
             promoCode: '',
             showAlert: false,
+            value: 0.50
+            ,
             alertType: '',
             alertMessage: '',
             loading: false,
@@ -75,11 +81,10 @@ class Checkout extends Component {
     componentDidMount = () => {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
-                console.log("user is", user.uid);
+                this.setState({ isSignedin: 1 })
                 firebase.firestore().collection('users').doc(user.uid).get().then(l => {
-                    console.log("l is", l.data())
-                    // var x = l.data().user_details
-                    var x = l.data()
+                    // console.log("l is",l.data())
+                    var x = l.data().user_details
                     console.log("x is", x)
                     if (x != undefined) {
                         var array = {
@@ -223,33 +228,35 @@ class Checkout extends Component {
         console.log("you selected", this.state.paymentMethod)
     };
 
-    confirmOrderHandler = (event, shoppingTotal) => {
+    confirmOrderHandler = (event) => {
         this.setState({
             loading: true
         })
         event.preventDefault();
-        let order = {};
-        order['cart'] = this.props.cartProductsProps;
-        order['user'] = {
-            firstName: this.state.customerInfo.firstName.value,
-            secondName: this.state.customerInfo.secondName.value,
-            email: this.state.customerInfo.email.value,
-            mobile: this.state.customerInfo.mobile.value,
-            address: this.state.customerInfo.address.value
-        };
-        order['usedPromoCode'] = this.state.promoCode;
-        order['currency'] = this.props.usedCurrencyProp;
-        order['paymentMethod'] = this.state.paymentMethod;
-        order['deliveryOption'] = this.state.usedDeliveryOption;
-        order['price'] = shoppingTotal
-        // todo
-        // create stripe token for payments
-        // if(this.state.paymentMethod==='creditCard'){
+        console.log("please save data", event.preventDefault())
 
-        // }else if(this.state.paymentMethod==='onDelivery'){
+        // let order = {};
+        // order['cart'] = this.props.cartProductsProps;
+        // order['user'] = {
+        // firstName: this.state.customerInfo.firstName.value,
+        // secondName: this.state.customerInfo.secondName.value,
+        // email: this.state.customerInfo.email.value,
+        // mobile:this.state.customerInfo.mobile.value,
+        // address:this.state.customerInfo.address.value
+        // };
+        // order['usedPromoCode'] = this.state.promoCode;
+        // order['currency'] = this.props.usedCurrencyProp;
+        // order['paymentMethod'] = this.state.paymentMethod;
+        // order['deliveryOption'] = this.state.usedDeliveryOption;
+        // order['price'] = shoppingTotal
+        // // todo
+        // // create stripe token for payments
+        // // if(this.state.paymentMethod==='creditCard'){
 
-        // }
-        this.props.confirmOrderProp(order, this.paymentProcess.bind(this), this.state.paymentMethod)
+        // // }else if(this.state.paymentMethod==='onDelivery'){
+
+        // // }
+        // this.props.confirmOrderProp(order,this.paymentProcess.bind(this),this.state.paymentMethod)
 
 
     };
@@ -304,10 +311,40 @@ class Checkout extends Component {
             this.setState({ correctCardInfo: true })
         }
     };
-    StoreMilkDetails = () => {
-        console.log("customer info is", this.state.customerInfo);
-    }
+    saveMilkSubscriptionData = (event) => {
 
+        event.preventDefault();
+        console.log("please svae data", firebase.auth().currentUser.uid)
+        var user_details = {
+            firstName: this.state.customerInfo.firstName.value,
+            secondName: this.state.customerInfo.secondName.value,
+            email: this.state.customerInfo.email.value,
+            mobile: this.state.customerInfo.mobile.value,
+            address: this.state.customerInfo.address.value,
+            uid: firebase.auth().currentUser.uid
+        }
+        var date = new Date().getDate();
+        var month =
+            firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).collection('milkSubscriptions').add({
+                user_details: user_details,
+                subscriptionType: this.props.location.aboutProps.type,
+                url: this.props.location.aboutProps.url,
+                quantity: this.state.value,
+                date: JSON.stringify(new Date().getDate() + "-" + new Date().getMonth() + "-" + new Date().getFullYear())
+            }).then(l => {
+                firebase.firestore().collection('milkSubscriptions').add({
+                    user_details: user_details,
+                    subscriptionType: this.props.location.aboutProps.type,
+                    url: this.props.location.aboutProps.url,
+                    quantity: this.state.value,
+                    date: JSON.stringify(new Date().getDate() + "-" + new Date().getMonth() + "-" + new Date().getFullYear())
+
+                })
+                this.state.isAdded = 1;
+                this.setState({ isAdded: this.state.isAdded })
+                console.log("suuccsesfully added", this.state.isAdded)
+            })
+    }
     render() {
         console.log("props getted babaiiii", this.props.location.aboutProps)
         // let productsPrices = [];
@@ -353,34 +390,56 @@ class Checkout extends Component {
         //     chosenPaymentMethod =
         //         <div className={'ml-4 p-3'}>You will pay when the product is delivered to you.</div>
         // }
-
         return (
+            <div>
+                {
+                    this.state.isSignedin === 1 ? <div>{
+                        this.state.isAdded === 0 ? <div>
+                            <div className="container py-4" style={{ marginTop: 50 }}>
+                                {/* <h4>Yo</h4> */}
+                                <div className="col-md-8 order-md-1 " >
+                                    <img src={this.props.location.aboutProps.url} style={{ width: '46%', height: 150, marginLeft: '30%' }}></img>
+                                    <div style={{ marginTop: 30 }}>
+                                        <h6 style={{ float: 'left' }}>Please slect below option how much quantity you want {this.props.location.aboutProps.type} :{this.state.value} Leters</h6>
+                                        <div style={{ width: 50 }}>
+                                            <NumericInput step={0.5} precision={2} value={this.state.value} style={{ width: 50 }} width="50"
+                                                onChange={(val) => { this.setState({ value: val }) }}
+                                                min={0} max={100}
+                                            />
+                                        </div>
+                                    </div>
+                                    {/* <NumericInput min={0} max={100} value={50}/> */}
+                                    <br></br>
+                                    <h4 className="mb-3">Billing Information</h4>
+                                    <form className="shop-form shop-bg-white p-3" noValidate>
+                                        {/* customer details form fields */}
+                                        <CustomerInputs
+                                            customerInfo={this.state.customerInfo}
+                                            inputChanged={(event, identifier) => this.customerInfoChangeHandler(event, identifier)} />
 
-            <div className="container py-4" style={{ marginTop: 50 }}>
-                {/* <h4>Yo</h4> */}
-                <div className="col-md-8 order-md-1 " >
-                    <img src={this.props.location.aboutProps.url} style={{ width: '46%', height: 150, marginLeft: '30%' }}></img>
-
-                    <h4 className="mb-3">Billing Information</h4>
-                    <form className="shop-form shop-bg-white p-3" noValidate>
-                        {/* customer details form fields */}
-                        <CustomerInputs
-                            customerInfo={this.state.customerInfo}
-                            inputChanged={(event, identifier) => this.customerInfoChangeHandler(event, identifier)} />
-                        <hr className="mb-4" />
-                        <button
-                            disabled={!(this.state.makeOrder)}
-                            className="btn shop-btn-secondary btn-lg btn-block"
-                            // onClick={(event) => this.confirmOrderHandler(event,shoppingTotal)}
-                            // onClick={(event) => this.paymentProcess(event)}
-                            onClick={this.StoreMilkDetails}
-                        >
-                            Confirm Order
-                        </button>
-                    </form>
-                </div>
-            </div>
-
+                                        <hr className="mb-4" />
+                                        <button
+                                            disabled={!(this.state.makeOrder)}
+                                            className="btn shop-btn-secondary btn-lg btn-block"
+                                            // onClick={(e/vent) => this.confirmOrderHandler(event)}
+                                            // onClick={(event) => this.paymentProcess(event)}
+                                            onClick={(e) => {
+                                                // console.log("'please save he data")
+                                                this.saveMilkSubscriptionData(e)
+                                            }}
+                                        >
+                                            Confirm Order
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> : <div>
+                            <h3 style={{ marginTop: 100 }}>Subscription added Succsessfully:)</h3>
+                        </div>
+                    }</div> : <div>
+                        <h3 style={{ marginTop: 100 }}>please login and then come back to get subscriptions</h3>
+                    </div>
+                }</div>
         )
     }
 }

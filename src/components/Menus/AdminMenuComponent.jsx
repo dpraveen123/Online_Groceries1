@@ -1,16 +1,16 @@
- 
+
 import React from 'react';
 import MenuItem from "../UI/MenuItem/MenuItem";
 import PropTypes from 'prop-types';
 import props from 'prop-types'
-import { Button, Nav} from 'reactstrap';
-import firebase, { FirebaseAuth,app } from "firebase";
+import { Button, Nav } from 'reactstrap';
+import firebase, { FirebaseAuth, app } from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { faWindowRestore } from '@fortawesome/free-solid-svg-icons';
-import {reactLocalStorage} from 'reactjs-localstorage';
+import { reactLocalStorage } from 'reactjs-localstorage';
 
 class AdminmenuComponent extends React.Component {
-    state = { isSignedIn: false }
+  state = { isSignedIn: false }
   uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -27,29 +27,32 @@ class AdminmenuComponent extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       this.setState({ isSignedIn: !!user })
       console.log("user", user);
-      
-    })
-  }   
 
-   
-    
-  render(){
+    })
+  }
+
+
+
+  render() {
     return (
-        <React.Fragment>
-               <Nav className="nav-main">  <MenuItem linkTo={'/'}>Orders</MenuItem>
-            <MenuItem linkTo={'/ChangeStock'}>Change Stock</MenuItem>
-            {/* <MenuItem linkTo={'/Fruits'}>Fruits</MenuItem>
+      <React.Fragment>
+        <Nav className="nav-main">  <MenuItem linkTo={'/'}>Orders</MenuItem>
+          <MenuItem linkTo={'/MilkOrders'}>Milk</MenuItem>
+          <MenuItem linkTo={'/ChangeStock'}>Change Stock</MenuItem>
+          <MenuItem linkTo={'/History'}>History</MenuItem>
+
+          {/* <MenuItem linkTo={'/Fruits'}>Fruits</MenuItem>
             <MenuItem linkTo={'/Herbs'}>Herbs</MenuItem>
             <MenuItem linkTo={'/orders'}>Orders</MenuItem>             */}
-            {/* <MenuItem linkTo={'/cart'} className="cart-main">
+          {/* <MenuItem linkTo={'/cart'} className="cart-main">
                 Cart <span className="badge badge-light">{this.props.cartCount}</span>
             </MenuItem> */}
-<MenuItem linkTo={'/'} clickHandler={ ()=>firebase.auth().signOut().then(()=>{
-  reactLocalStorage.clear();
-  window.location.reload()
-  console.log("signe out")
-}) }>SignOut</MenuItem></Nav>
-{/* {this.state.isSignedIn ? 
+          <MenuItem linkTo={'/'} clickHandler={() => firebase.auth().signOut().then(() => {
+            reactLocalStorage.clear();
+            window.location.reload()
+            console.log("signe out")
+          })}>SignOut</MenuItem></Nav>
+        {/* {this.state.isSignedIn ? 
           <Nav className="nav-main">  <MenuItem linkTo={'/'}>Home</MenuItem>
             <MenuItem linkTo={'/vegetables'}>Vegetables</MenuItem>
             <MenuItem linkTo={'/Fruits'}>Fruits</MenuItem>
@@ -71,10 +74,11 @@ class AdminmenuComponent extends React.Component {
 {/* <MenuItem linkTo={'/cart'} className="cart-main">
     Cart <span className="badge badge-light">{this.props.cartCount}</span>
 </MenuItem> */}
-  {/* <MenuItem linkTo={'/cart'} >Login</MenuItem></Nav>
-            } */} 
-        </React.Fragment>
-    )}
+        {/* <MenuItem linkTo={'/cart'} >Login</MenuItem></Nav>
+            } */}
+      </React.Fragment>
+    )
+  }
 };
 
 AdminmenuComponent.propTypes = {

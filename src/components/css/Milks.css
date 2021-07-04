@@ -10,11 +10,11 @@
 
 }
 
-.Fruits{
+.Milk{
 box-sizing: border-box;
 margin-top: 80px;
 min-width: 0;
-background-image: url('https://images.pexels.com/photos/1253250/pexels-photo-1253250.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+background-image: url('https://www.thestatesman.com/wp-content/uploads/2018/08/milk.jpg');
 /* display: -webkit-box; */
 /* display: -webkit-flex; */
 /* display: -ms-flexbox; */
@@ -39,19 +39,19 @@ box-shadow: 0 2px 4px rgba(0,0,0,0.06);
 
 
 @media screen and (min-width: 1024px){
-.Fruits{
+.Milk{
     min-height: 300px;
     padding: 60px;
 }}
 @media screen and (max-width: 1024px){
-    .Fruits{
+    .Milk{
         min-height: 400px;
         padding: 60px;
     }
 
 }
 @media screen and (max-width: 768px){
-.Fruits{
+.Milk{
     min-height: 330px !important;
     padding: 30px;
 }}
@@ -63,12 +63,12 @@ body {
 }
 @media screen and (max-width: 768px){
 
-.Fruits::after {
+.Milk::after {
     background: linear-gradient(to right,rgba(0,0,0,0.5) ,rgba(0,0,0,0.5));
 }
 }
 
-.Fruits::after {
+.Milk::after {
     content: "";
     display: block;
     width: 100%;
@@ -79,4 +79,3 @@ body {
     left: 0;
     z-index: 0;
 }
-/* © 2021 GitHub, Inc. */

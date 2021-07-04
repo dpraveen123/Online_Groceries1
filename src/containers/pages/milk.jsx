@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { addToCart, updateCartProductCount } from "../../store/actions/shop";
 import ProductCard from "../../components/ProductCard";
 import SecondaryLayout from "../../Layouts/SecondaryLayout";
-import EmptyCategoryPageContent from '../../components/EmptyCategoryPageContent';
-import '../../components/css/Fruits.css';
-import { NavLink } from "react-router-dom";
+import EmptyCategoryPageContent from  '../../components/EmptyCategoryPageContent';
+import '../../components/css/Milks.css';
+import {NavLink} from "react-router-dom";
 class Milk extends Component {
     render() {
         let products = <EmptyCategoryPageContent />;
@@ -41,17 +41,17 @@ class Milk extends Component {
                 })
         }
         return (<div className="css-11zk6ke">
-            <section className="Fruits">
-                <header className="css-1wu2h8j">
-                    <h1>
-                        Milk
-                    </h1>
-                </header>
-            </section>
-
-            <div id="category" className="css-vz0s8c">
-                <h4>Please select any one of the subscription :)</h4>
-                {/* <div className="main">
+        <section className="Milk">
+       <header className="css-1wu2h8j">
+        <h1>
+         Milk
+        </h1>
+    </header>
+     </section> 
+     
+                       <div id="category" className="css-vz0s8c">
+                           <h4>Please select any one of the subscription :)</h4>
+               {/* <div className="main">
        <div className="content">
        <div className="products"> */}
                 <div className="row">

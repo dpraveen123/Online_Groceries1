@@ -22,10 +22,12 @@ import firebase from './store/reducers/firebase';
 import admin from './admin/admin.js';
 import AdminOrders from './containers/pages/AdminOrders';
 import AdminSpecificOrder from './containers/pages/AdminSpecificOrder';
-import ChangeStock from './containers/ChangeStock';
+import ChangeStock from './containers/pages/AdminchangeStock';
 import milk from './containers/pages/milk';
 import customerInputs from './components/Checkout/Forms/CustomerInputs';
 import milkCheckout from './containers/pages/milkCheckout';
+import AdminHistory from './containers/pages/AdminHistory';
+import AdminMilk from './containers/pages/AdminMilk';
 
 class App extends Component {
     // false
@@ -131,6 +133,8 @@ class App extends Component {
                         <Route path={'/'} exact component={AdminOrders} />
                             <Route path={'/orders/:order_id'} component={AdminSpecificOrder} /> 
                             <Route path={'/ChangeStock'} component={ChangeStock} /> 
+                            <Route path={'/History'} component={AdminHistory} /> 
+                            <Route path={'/MilkOrders'} component={AdminMilk} /> 
 
                             {/* <Route path={'/vegetables'} component={Vegetables} />
                             <Route path={'/fruits'} component={Fruits} />
